@@ -3,19 +3,22 @@
         <div class="jiafang">
             <ul>
                 <li class="li1">
-                    <div>注册开发者账号</div>
+                    <div>注册企业需求方</div>
+                </li>
+                <li class="li0">
+                    <input placeholder=" 输入企业名称"  @focus="huoqujiaodian0()" @blur="shiqujiaodian0()" ref="input0"/>
                 </li>
                 <li class="li2">
                     <input placeholder=" 用户名(即个性后缀，注册后无法修改)"  @focus="huoqujiaodian()" @blur="shiqujiaodian()" ref="input1"/>
                 </li>
                 <li class="li3">
                     <div class="li3_1">
-                        <input type="text" class="li3_1_1" placeholder=" 邮箱" @focus="huoqujiaodian2()" @blur="shiqujiaodian2()" ref="input2"/>
+                        <input type="text" class="li3_1_1" placeholder=" 邮箱"  @focus="huoqujiaodian2()" @blur="shiqujiaodian2()" ref="input2"/>
                         <div class="li3_1_2">发送验证码</div>
                     </div>
                 </li>
                 <li class="li4">
-                    <input placeholder=" 输入验证码" @focus="huoqujiaodian3()" @blur="shiqujiaodian3()" ref="input3"/>
+                    <input placeholder=" 输入验证码"  @focus="huoqujiaodian3()" @blur="shiqujiaodian3()" ref="input3"/>
                 </li>
                 <li class="li5">
                     <input placeholder=" 请输入密码" @focus="huoqujiaodian4()" @blur="shiqujiaodian4()" ref="input4"/>
@@ -25,7 +28,7 @@
                 </li>
                 <li class="li7">
                     <div id="checked">
-                        <input type="checkbox"  @click="dianjixuanzhong($event)"  ref="checked"/>
+                        <input type="checkbox" @click="dianjixuanzhong($event)" ref="checked" />
                         <div>我同意遵守<a href="#">《码市用户服务协议》</a></div>
                     </div>
                 </li>
@@ -33,7 +36,7 @@
                     <input type="button" value="注 册" @click="dianjiqueren()" @mousemove="shubiaoyinru()" @mouseout="shubiaoyichu()" ref="zhuce"/>
                 </li>
                 <li class="li9">
-                    <router-link to="/zhuce"><input type="button" value="注册需求方"/></router-link>
+                    <router-link to="/zhucexuqiufang"><input type="button" value="返回选择需求方类型"/></router-link>
                     
                 </li>
             </ul>
@@ -50,6 +53,7 @@
                 cc:'请输入验证码',
                 dd:'请输入密码',
                 ee:'请确认密码',
+                ff:'请输入企业名称',
                 change:false
             }
         },
@@ -82,6 +86,16 @@
             },
             shubiaoyichu(){
                 this.$refs.zhuce.style.background="rgb(255,128,128)";
+            },
+
+            huoqujiaodian0(){
+                this.$refs.input0.placeholder=" ";
+            },
+            shiqujiaodian0(){
+                let ff=this.ff;
+                if (this.$refs.value=" ") {
+                    this.$refs.input0.placeholder=ff;
+                }
             },
 
             huoqujiaodian(){
@@ -140,7 +154,7 @@
 <style scoped>
 .jiafang{
     width: 360px;
-    height: 540px;
+    height: 570px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 30px auto;

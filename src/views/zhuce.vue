@@ -3,20 +3,24 @@
         <el-container>
         <el-aside width="200px">你想成为？</el-aside>
         <el-main>
+          <router-link to="/zhuceyi">
             <div class="shenfen shenfen1">
                 <img src="../assets/jiafang.svg"/>
                 <div>
-                    <h3>需求方</h3>
+                  <h3>开发者</h3>
                     <div>可在码市报名项目，赚取利益</div>
                 </div>
             </div>
+          </router-link>
+          <router-link to="/zhucexuqiufang">
             <div class="shenfen shenfen2">
                 <img src="../assets/yifang1.svg"/>
                 <div>
-                    <h3>需求方</h3>
+                  <h3>需求方</h3>
                     <div>可在码市发布项目，实现需求</div>
                 </div>
             </div>
+          </router-link>
         </el-main>
         </el-container>
     </div>

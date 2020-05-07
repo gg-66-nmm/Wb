@@ -3,10 +3,10 @@
         <div class="jiafang">
             <ul>
                 <li class="li1">
-                    <div>注册开发者账号</div>
+                    <div>注册个人需求方</div>
                 </li>
                 <li class="li2">
-                    <input placeholder=" 用户名(即个性后缀，注册后无法修改)"  @focus="huoqujiaodian()" @blur="shiqujiaodian()" ref="input1"/>
+                    <input placeholder=" 用户名(即个性后缀，注册后无法修改)" @focus="huoqujiaodian()" @blur="shiqujiaodian()" ref="input1"/>
                 </li>
                 <li class="li3">
                     <div class="li3_1">
@@ -18,13 +18,13 @@
                     <input placeholder=" 输入验证码" @focus="huoqujiaodian3()" @blur="shiqujiaodian3()" ref="input3"/>
                 </li>
                 <li class="li5">
-                    <input placeholder=" 请输入密码" @focus="huoqujiaodian4()" @blur="shiqujiaodian4()" ref="input4"/>
+                    <input placeholder=" 请输入密码" @focus="huoqujiaodian4()" @blur="shiqujiaodian4()" ref="input4" />
                 </li>
                 <li class="li6">
                     <input placeholder=" 请确认密码" @focus="huoqujiaodian5()" @blur="shiqujiaodian5()" ref="input5"/>
                 </li>
                 <li class="li7">
-                    <div id="checked">
+                    <div  id="checked">
                         <input type="checkbox"  @click="dianjixuanzhong($event)"  ref="checked"/>
                         <div>我同意遵守<a href="#">《码市用户服务协议》</a></div>
                     </div>
@@ -33,8 +33,8 @@
                     <input type="button" value="注 册" @click="dianjiqueren()" @mousemove="shubiaoyinru()" @mouseout="shubiaoyichu()" ref="zhuce"/>
                 </li>
                 <li class="li9">
-                    <router-link to="/zhuce"><input type="button" value="注册需求方"/></router-link>
                     
+                    <router-link to="/zhucexuqiufang"><input type="button" value="返回选择需求方类型"/></router-link>
                 </li>
             </ul>
         </div>
@@ -54,7 +54,7 @@
             }
         },
         methods:{
-            dianjixuanzhong(e){
+             dianjixuanzhong(e){
                 var change=this.change;
                 change=e.target.checked;
                 //console.log(change);
