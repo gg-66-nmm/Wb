@@ -3,16 +3,20 @@
         <top></top>
         <el-main>
             <h3>登录码市</h3>
-            <div class="kuang">
-                <input type="text" placeholder="手机号/邮箱/用户名" >
-                <input type="text" placeholder="输入密码" >
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
+                <el-form-item prop="username">
+                    <el-input v-model="ruleForm.username" placeholder="手机号/邮箱/用户名" ref="username" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item prop="password">
+                    <el-input placeholder="输入密码" v-model="ruleForm.password" show-password></el-input>
+                </el-form-item>
                 <div class="row">
-                    <input type="checkbox" id="remmber" class="left cur">
-                    <label for="remmber" class="left cur">记住密码</label>
-                    <div class="findpsw right cur"><a href="findpsw">找回密码</a></div>
+                    <el-checkbox v-model="checked">记住密码</el-checkbox>
+                    <router-link to="findpsw" class="findpsw cur">找回密码</router-link>
+                    <!-- <div class="findpsw right cur"><a href="findpsw">找回密码</a></div> -->
                 </div>                
-                <input type="button" id="login" class="login" value="登录" @click="jump">
-            </div>            
+                <el-button type="primary"  @click="jump">登录</el-button>
+            </el-form>            
         </el-main>
         <foot></foot>
     </div>
@@ -26,11 +30,64 @@ import foot from '../components/footer'
            top ,
            foot
         },
+        data(){
+            var verifiname=(rule,value,callback)=>{
+                if(value===''){
+                    callback(new Error('*请输入账号'))
+                }else{
+                    callback();
+                }
+            };
+            var verifipass=(rule,value,callback)=>{
+                if(value===''){
+                    callback(new Error('*请输入密码'))
+                }else{
+                    callback();
+                }
+            };
+            return {
+                ruleForm:{
+                    username:'',
+                    password:'',
+                },
+                rules:{
+                    username:[
+                        {validator:verifiname,trigger:'blur'}
+                    ],
+                    password:[
+                        {validator:verifipass,trigger:'blur'}
+                    ],
+                },
+               
+                checked:true,
+                uname:"*请输入账号",
+                upsw:"*请输入密码",
+                aa:"！账号或密码输入错误"
+            }
+        },
+        mounted(){
+        },
         methods:{
             jump(){
-                location.href="../App.vue";
-            }
+                this.$axios
+                .post('/api/v2/api-docs',{
+                    username:this.Login.username,
+                    password:this.Login.password,
+                })
+                .then(successResponse=>{
+                    if(successResponse.data.code===200){
+                        this.$router.replace({path:'./'})
+                    }
+                })
+                .catch(failResponse=>{
+                    
+                })
+            },
+        },
+        mounted(){
+            
         }
+        
     }
     
 </script>
@@ -62,7 +119,7 @@ a:hover{
     margin-bottom: 40px;
   }
   .findpsw{
-      margin-left: 160px;
+      margin-left: 140px;
   }
   .cur{
       
@@ -76,12 +133,30 @@ a:hover{
   .kuang input{
       float: left;
       margin-top: 20px;
+      margin-bottom: 5px;
       border-radius: 5px;
       outline: none;
       border: 1px solid #ccc;
       text-indent: 1em;
       height:35px;
-      width:290px;
+      width:298px;
+  }
+  .el-input{
+      outline: none;
+      margin-top: 10px;
+  }
+  .el-checkbox{
+      color: #ff8080;
+  }
+  .el-button{
+      width: 298px;
+      height: 35px;
+      background-color: #ff8080;
+      border: none;
+      margin-top: 15px;
+  }
+  .el-button:hover{
+      opacity: 0.9;
   }
   .row{
       margin-top: 10px;
@@ -100,6 +175,12 @@ a:hover{
       font-size: 16px;
       border: none;
       cursor: pointer;
+  }
+  .red{
+      font-size: 12px;
+      color: red;
+      text-align: left;
+      margin-top: 15px;
   }
   
 </style>

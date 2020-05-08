@@ -3,11 +3,14 @@
         <top></top>
         <el-main>
             <h3>邮箱重新设置密码</h3>
-            <div class="kuang">
-                <input type="text" placeholder="电子邮箱" >              
-                <input type="button" class="psw" value="发送重置邮件" @click="gologin">
-                <a href="login" class="back">返回登录</a>
-            </div>            
+            <el-form class="kuang" :model="emailForm" :rules="rules">
+                <el-form-item prop="email">
+                    <el-input type="email" placeholder="电子邮箱" v-model="emailForm.email"  autocomplete="off"> </el-input> 
+                </el-form-item>                            
+                <el-button type="primary" class="psw" @click="gologin">发送重置邮件</el-button>
+                <!-- <a href="login" class="back">返回登录</a> -->
+                <router-link to="login">返回登录</router-link>
+            </el-form>            
         </el-main>
         <foot></foot>
     </div>
@@ -17,13 +20,44 @@
     import top from '../components/head'
     import foot from '../components/footer'
     export default {
-        components:{
+         components:{
            top ,
            foot
         }, 
+        data(){
+            var verifimail=(rule,value,callback)=>{
+                if(value===''){
+                    callback(new Error('*邮箱不能为空'))
+                }else{
+                    callback();
+                }
+            };
+            return{
+                emailForm:{
+                    email:'',
+                },
+                rules:{
+                    email:[
+                        {validator:verifimail,trigger:'blur'}
+                        ]
+                },
+            }
+        },
+       
         methods:{
             gologin(){
-                
+                this.$axios
+                .post('/api/v2/api-docs',{
+                    email:this.findpsw.email,
+                })
+                .then(successResponse=>{
+                    if(successResponse.data.code===200){
+                        this.$message('已发送重置信息，请注意查收');
+                    }
+                })
+                .catch(failResponse=>{
+                    
+                })
             }
             
         } 
@@ -51,15 +85,11 @@ a:hover{
       margin: auto;
       overflow: hidden;
   }
-  .kuang input{
+  .el-input,.el-button{
       float: left;
       margin-top: 20px;
-      border-radius: 5px;
-      outline: none;
-      border: 1px solid #ccc;
-      text-indent: 1em;
       height:35px;
-      width:290px;
+      width:298px;
       margin-bottom: 15px;
   }
   .kuang .psw{
