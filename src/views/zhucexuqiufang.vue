@@ -7,7 +7,7 @@
         <el-main>
           <router-link to="/zhucexuqiufanggeren">
             <div class="shenfen shenfen1">
-                <img src="../assets/jiafang.svg"/>
+                <img src="../assets/yigeren.svg"/>
                 <div>
                     <h3>个人需求方</h3>
                     <div>适用于没有企业资质得个人需求方</div>
@@ -16,7 +16,7 @@
           </router-link>
           <router-link to="/zhucexuqiufangqiye">
             <div class="shenfen shenfen2">
-                <img src="../assets/yifang1.svg"/>
+                <img src="../assets/yiqunren.svg"/>
                 <div>
                     <h3>企业需求方</h3>
                     <div>适用于已注册企业资质得需求方</div>

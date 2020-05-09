@@ -12,11 +12,11 @@
                 <li class="li3">
                     <div class="li3_1">
                         <input type="email" class="li3_1_1" placeholder=" 邮箱" v-model='shuju.email' @focus="huoqujiaodian2()" @blur="shiqujiaodian2()" ref="input2"/>
-                        <div class="li3_1_2" @click="fasongyanzheng()">发送验证码</div>
+                        <div class="li3_1_2" @click="fasongyanzheng()">获取验证码</div>
                     </div>
                 </li>
                 <li class="li4">
-                    <input placeholder=" 输入验证码" @focus="huoqujiaodian3()" @blur="shiqujiaodian3()" ref="input3"/>
+                    <input placeholder=" 输入验证码" v-model="shuju.yanzhengma" @focus="huoqujiaodian3()" @blur="shiqujiaodian3()" ref="input3"/>
                 </li>
                 <li class="li5">
                     <input type="password" placeholder=" 请输入密码(6-24位数字、字母或字符组成)" v-model="shuju.psw" @focus="huoqujiaodian4()" @blur="shiqujiaodian4()" ref="input4"/>
@@ -50,7 +50,8 @@
                 shuju:{
                     name:'',
                     email:'',
-                    psw:''
+                    psw:'',
+                    yanzhengma:''
                 },
 
                 aa:'用户名不能为空(长度大于3，小于10的字符串)',
@@ -87,6 +88,25 @@
                     //ischecked.style.background='red';
                 }
                 console.log(this.change);
+
+                if (this.shuju.name!=this.kong&&this.shuju.psw!=this.kong) {
+                    this.$http.post('/api/register',{
+                        code:this.shuju.yanzhengma,
+                        email:this.shuju.email,
+                        password:this.shuju.psw,
+                        username:this.shuju.name
+                    }).then(
+                    (success)=>{
+                        console.log(success);
+                        this.$router.replace('/login');
+                        // if (success.data.code==200) {
+                        //     this.$router.replace({path:'/'})
+                        // }
+                        }
+                    ).catch(()=>{
+
+                    })
+                }
             },
 
             shubiaoyinru(){
@@ -124,14 +144,26 @@
                     this.shuju.email=this.kong;
                     this.$refs.input2.placeholder='邮箱格式不正确';
                     
+                }else{
+                    this.$http.post('/api/emailVerify',{
+                        email:this.shuju.email
+                    }).then((success)=>{
+                        console.log(success);
+                        if (success.data.code==200) {
+                            this.shuju.email=this.kong;
+                            this.$refs.input2.placeholder='邮箱已被注册';
+                        }
+                    })
                 }
+                
             },
             fasongyanzheng(){
-                this.$http.post('',{data:shuju}).then(
+                this.$http.post('/api/sendEmail',{email:this.shuju.email}).then(
                     (success)=>{
-                        if (success.data.code==200) {
-                            this.$router.replace({path:'/'})
-                        }
+                        console.log(success)
+                        // if (success.data.code==200) {
+                        //     this.$router.replace({path:'/'})
+                        // }
                     }
                 ).catch(()=>{
 
@@ -145,7 +177,7 @@
                 let cc=this.cc;
                 if (this.$refs.input3.value=="") {
                     this.$refs.input3.placeholder=cc;
-                }
+                } 
             },
 
             huoqujiaodian4(){

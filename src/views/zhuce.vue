@@ -1,5 +1,6 @@
 <template>
     <div>
+      <top></top>
         <el-container>
         <el-aside width="200px">你想成为？</el-aside>
         <el-main>
@@ -23,12 +24,18 @@
           </router-link>
         </el-main>
         </el-container>
+        <foot></foot>
     </div>
 </template>
 
 <script>
+import top from '../components/head'
+import foot from '../components/footer'
     export default {
-        
+        components:{
+          top,
+          foot,
+        }
     }
 </script>
 
