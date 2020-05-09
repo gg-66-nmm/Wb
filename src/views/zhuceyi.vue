@@ -126,16 +126,24 @@
                     
                 }
             },
-            // fasongyanzheng(){
-                
-            // },
+            fasongyanzheng(){
+                this.$http.post('',{data:shuju}).then(
+                    (success)=>{
+                        if (success.data.code==200) {
+                            this.$router.replace({path:'/'})
+                        }
+                    }
+                ).catch(()=>{
+
+                })
+            },
 
             huoqujiaodian3(){
-                this.$refs.input3.placeholder=" ";
+                this.$refs.input3.placeholder="";
             },
             shiqujiaodian3(){
                 let cc=this.cc;
-                if (this.$refs.input3.value=" ") {
+                if (this.$refs.input3.value=="") {
                     this.$refs.input3.placeholder=cc;
                 }
             },
