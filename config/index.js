@@ -7,27 +7,18 @@ const path = require('path')
 module.exports = {
     dev: {
 
-<<<<<<< HEAD
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/api': {
-                target: 'http://www.wbings.top:8000/',
+            '/aa': {
+                target: 'http://192.168.1.108:8000/',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': 'http://www.wbings.top:8000/',
+                    '^/aa': 'http://192.168.1.108:8000/',
                 }
             }
         },
-=======
-    // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-      
-    },
->>>>>>> 9f8ded8ef94903192169be21f01fe63cb495ecc7
 
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST

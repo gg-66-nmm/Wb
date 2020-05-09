@@ -6,12 +6,14 @@ import router from './router'
 import ElementUI from 'element-ui';
 import Axios from 'axios';
 import VueAxios from 'vue-axios';
+import Vuex from 'vuex';
 import 'element-ui/lib/theme-chalk/index.css';
 
 
 Vue.use(ElementUI);
+Vue.use(Vuex);
 // 全局注册，之后可在其他组件中通过 this.$axios 发送数据
-Vue.prototype.$axios = axios //挂载
+Vue.prototype.$axios = Axios //挂载
 Vue.use(VueAxios, Axios);
 
 Vue.config.productionTip = false

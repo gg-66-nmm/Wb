@@ -8,6 +8,7 @@ import zhuceyi from '@/views/zhuceyi'
 import zhucexuqiufang from '@/views/zhucexuqiufang'
 import zhucexuqiufanggeren from '@/views/zhucexuqiufanggeren'
 import zhucexuqiufangqiye from '@/views/zhucexuqiufangqiye'
+import ChangePsw from '@/views/ChangePsw'
 
 
 
@@ -26,6 +27,11 @@ export default new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/changepsw',
+            name: 'ChangePsw',
+            component: ChangePsw
         },
         {
             path: '/findpsw',

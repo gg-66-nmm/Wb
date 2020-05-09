@@ -47,8 +47,8 @@
         methods:{
             gologin(){
                 this.$axios
-                .post('/api/v2/api-docs',{
-                    email:this.findpsw.email,
+                .post('/aa/changePassword',{
+                    email:this.emailForm.email,
                 })
                 .then(successResponse=>{
                     if(successResponse.data.code===200){

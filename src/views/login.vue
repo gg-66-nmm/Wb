@@ -4,15 +4,15 @@
         <el-main>
             <h3>登录码市</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
-                <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="手机号/邮箱/用户名" ref="username" autocomplete="off"></el-input>
+                <el-form-item prop="email">
+                    <el-input v-model="ruleForm.email" placeholder="手机号/邮箱/用户名" ref="email" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input placeholder="输入密码" v-model="ruleForm.password" show-password></el-input>
                 </el-form-item>
                 <div class="row">
                     <el-checkbox v-model="checked">记住密码</el-checkbox>
-                    <router-link to="findpsw" class="findpsw cur">找回密码</router-link>
+                    <router-link to="changepsw" class="findpsw cur" @click="clear">找回密码</router-link>
                     <!-- <div class="findpsw right cur"><a href="findpsw">找回密码</a></div> -->
                 </div>                
                 <el-button type="primary"  @click="jump">登录</el-button>
@@ -47,11 +47,13 @@ import foot from '../components/footer'
             };
             return {
                 ruleForm:{
-                    username:'',
+                    email:'',
                     password:'',
+                    username:'',
+                    code:'',      
                 },
                 rules:{
-                    username:[
+                    email:[
                         {validator:verifiname,trigger:'blur'}
                     ],
                     password:[
@@ -59,7 +61,6 @@ import foot from '../components/footer'
                     ],
                 },
                
-                checked:true,
                 uname:"*请输入账号",
                 upsw:"*请输入密码",
                 aa:"！账号或密码输入错误",
@@ -70,15 +71,21 @@ import foot from '../components/footer'
         },
         methods:{
             jump(){
-                this.$axios
-                .post('/api/v2/api-docs',{
-                    username:this.Login.username,
-                    password:this.Login.password,
-                })
-                .then(successResponse=>{
-                    if(successResponse.data.code===200){
-                        // if()
-                        this.$router.replace({path:'./'})
+                const self=this;
+                this.$axios.post('/aa/login',{
+                    email:this.ruleForm.email,
+                    password:this.ruleForm.password,
+                }).then(res=>{
+                    console.log(res)
+                    
+                    if(res.data.code==200){
+                        /* //当记住密码时向localStorage里面存储id跟密码
+                        if(this.checked==true){
+                            this.setlocalStorage({this.ruleForm.username})
+                        }else{
+                            this.clearlocalStorage();
+                        }     */                  
+                        self.$router.replace({path:'./'}) 
                     }
                 })
                 .catch(failResponse=>{
@@ -86,10 +93,24 @@ import foot from '../components/footer'
                 })
                 /* console.log(this.ruleForm.username)
                 console.log(this.ruleForm.password) */
+            },/* 
+            //保存localStorage
+                setlocalStorage(c_email,c_pwd){
+                localStorage.siteName=c_name
+                localStorage.sitePassword=c_pwd
             },
-        },
+            //获取localStorage
+            getlocalStorage(){
+                this.ruleForm.email=localStorage.getItem(localStorage.key(1))
+                this.ruleForm.password=localStorage.getItem(localStorage.key(2))
+            },*/
+            //忘记密码，清空密码
+            clear:function(){
+                //this.setlocalStorage('','')
+            }
+        }, 
         mounted(){
-            
+            // this.getlocalStorage()
         }
         
     }
