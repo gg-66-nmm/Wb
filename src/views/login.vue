@@ -62,7 +62,8 @@ import foot from '../components/footer'
                 checked:true,
                 uname:"*请输入账号",
                 upsw:"*请输入密码",
-                aa:"！账号或密码输入错误"
+                aa:"！账号或密码输入错误",
+                checked:false,
             }
         },
         mounted(){
@@ -76,12 +77,15 @@ import foot from '../components/footer'
                 })
                 .then(successResponse=>{
                     if(successResponse.data.code===200){
+                        // if()
                         this.$router.replace({path:'./'})
                     }
                 })
                 .catch(failResponse=>{
-                    
+                    new Error(failResponse)
                 })
+                /* console.log(this.ruleForm.username)
+                console.log(this.ruleForm.password) */
             },
         },
         mounted(){
