@@ -9,14 +9,19 @@
                             <el-input placeholder="输入项目名称，1-20个字符以内" v-model="ruleForm.name"></el-input>
                         </el-form-item>
                         <el-form-item label="项目类型" prop="leiixng">
-                            <el-select v-model="leixing" style="width:480px" placeholder="请选择类型">
+                            <el-checkbox-group v-model="leixing">
+                                <el-checkbox label="ios"></el-checkbox>
+                                <el-checkbox label="Android"></el-checkbox>
+                                <el-checkbox label="PC网站"></el-checkbox>
+                            </el-checkbox-group>
+                            <!-- <el-select v-model="leixing" style="width:480px" placeholder="请选择类型">
                                 <el-option
                                 v-for="item in options"
                                 :key="item.value"
                                 :label="item.label"
                                 :value="item.value">
                                 </el-option>
-                            </el-select>
+                            </el-select> -->
                         </el-form-item>
                         <el-form-item label="项目预算">
                             <el-input placeholder="项目预算资金" v-model="ruleForm.zijin"></el-input>
@@ -32,14 +37,10 @@
                         <el-form-item>
                             <el-upload
                             class="upload-demo"
-                            :on-preview="handlePreview"
-                            :on-remove="handleRemove"
-                            :before-remove="beforeRemove"
+                            action
                             multiple
                             :limit="3"
-                            :on-exceed="handleExceed"
-                            :file-list="fileList"
-                            :http-request="file"
+                            :http-request="fileaa"
                             >
                                 <el-button size="small" style="width:480px;
                                 border:0px solid red;
@@ -93,10 +94,8 @@ import top from '../components/head'
                     value: '其他',
                     label: '其他'
                 }],
-                leixing: '',
-                fileList: [
-                    {name: '', url: ''}, 
-                    {name: '', url: ''}],
+                leixing: [],
+                fileList: {},
                 rules:{
                     name:[
                         { required: true, message: '项目名称必填', trigger: 'blur' },
@@ -109,44 +108,26 @@ import top from '../components/head'
             }
         },
         methods: {
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
-            },
-            handlePreview(file) {
-                console.log(file);
-            },
-            handleExceed(files, fileList) {
-                this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-            },
-            beforeRemove(file, fileList) {
-                return this.$confirm(`确定移除 ${ file.name }？`);
-            },
-            file(wj){
+            fileaa(wj){
                 console.log(wj);
                 this.filelist=wj.file;
             },
             fabu(){
                 // console.log(this.$refs.fabu.checked);
                 // console.log(aa)
-                if (this.$refs.fabu.checked) {
-                    this.$refs[aa].validata(valid=>{
+                // if (this.$refs.fabu.checked) {
+                    // this.$refs[aa].validata(valid=>{
                         let formdata =new FormData();
-                        formdata.append("demandfile",this.filelist);
+                        formdata.append("demandFile",this.filelist);
                         formdata.append("demandBudget",this.ruleForm.zijin);
                         formdata.append("demandDetail",this.ruleForm.jieshao);
                         formdata.append("demandName",this.ruleForm.name);
                         formdata.append("demandType",this.leixing);
+                    // })
+                    this.$http.post('/api/demand/demand',formdata).then(res=>{
+                        console.log(res);
                     })
-                    this.$http.post('/api/demand/demand',{
-                        formdata
-                        // demandBudget:this.ruleForm.zijin,
-                        // demandDetail:this.ruleForm.jieshao,
-                        // demandName:this.ruleForm.name,
-                        // demandType:this.leixing,
-                    }).then(res=>{
-                        console.log(1);
-                    })
-                }
+                // }
             },
         }
     }
