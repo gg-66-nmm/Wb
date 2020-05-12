@@ -2,10 +2,10 @@
     <div>
         <top></top>
         <el-main>
-            <h3>登录码市</h3>
+            <h3>欢迎登录长安城下最优秀的码农</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
                 <el-form-item prop="email">
-                    <el-input v-model="ruleForm.email" placeholder="手机号/邮箱/用户名" ref="email" autocomplete="off"></el-input>
+                    <el-input v-model="ruleForm.email" placeholder="输入邮箱" ref="email" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input placeholder="输入密码" v-model="ruleForm.password" show-password></el-input>
@@ -33,8 +33,9 @@ import foot from '../components/footer'
         data(){
             var verifiname=(rule,value,callback)=>{
                 if(value===''){
-                    callback(new Error('*请输入账号'))
-                }else{
+                    callback(new Error('*请输入邮箱'))
+                }
+                else{
                     callback();
                 }
             };
@@ -61,9 +62,6 @@ import foot from '../components/footer'
                     ],
                 },
                
-                uname:"*请输入账号",
-                upsw:"*请输入密码",
-                aa:"！账号或密码输入错误",
                 checked:false,
             }
         },
@@ -72,25 +70,30 @@ import foot from '../components/footer'
         methods:{
             jump(){
                 const self=this;
-                this.$axios.post('/aa/login',{
-                    email:this.ruleForm.email,
-                    password:this.ruleForm.password,
-                }).then(res=>{
-                    console.log(res)
-                    
-                    if(res.data.code==200){
-                        /* //当记住密码时向localStorage里面存储id跟密码
-                        if(this.checked==true){
-                            this.setlocalStorage({this.ruleForm.username})
-                        }else{
-                            this.clearlocalStorage();
-                        }     */                  
-                        self.$router.replace({path:'./'}) 
-                    }
-                })
-                .catch(failResponse=>{
-                    new Error(failResponse)
-                })
+                if(this.ruleForm.email===''||this.ruleForm.password===''){
+                    this.$message.error("邮箱或密码不能为空")
+                }else{
+                    this.$axios.post('/api/login',{
+                        email:this.ruleForm.email,
+                        password:this.ruleForm.password,
+                    }).then(res=>{
+                        console.log(res)
+                        
+                        if(res.data.code==200){
+                            /* //当记住密码时向localStorage里面存储id跟密码
+                            if(this.checked==true){
+                                this.setlocalStorage({this.ruleForm.username})
+                            }else{
+                                this.clearlocalStorage();
+                            }     */                  
+                            self.$router.replace({path:'./'}) 
+                        }
+                    })
+                    .catch(failResponse=>{
+                        new Error(failResponse)
+
+                    })
+                }
                 /* console.log(this.ruleForm.username)
                 console.log(this.ruleForm.password) */
             },/* 
@@ -124,6 +127,11 @@ a{
 }
 a:hover{
     color: #ff8080;
+}
+h3{
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 20px;
 }
     .el-main {
     background-color: #fff;

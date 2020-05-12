@@ -22,7 +22,6 @@
                 </el-form-item>                            
                 <el-button type="primary" class="psw" @click="gologin">重置密码</el-button>
                 <!-- <a href="login" class="back">返回登录</a> -->
-                <router-link to="login">返回登录</router-link>
             </el-form>            
         </el-main>
         <foot></foot>
@@ -95,17 +94,19 @@
             code(){
                 console.log(this.emailForm.email)
                 this.$axios
-                .post('/aa/sendEmail',{email:this.emailForm.email})
+                .post('/api/sendEmail',{email:this.emailForm.email})
                 .then(res=>{
-                    console.log(res)
+                    //console.log(res)
+                    this.$message("验证码已发送到你的邮箱，请注意查收")
                 })
                 .catch(res=>{
-                    console.log(res)
+                    //console.log(res)
+                    this.$message.error(res)
                 })
             },
             gologin(){
                 this.$axios
-                .post('/aa/codeVerify',{
+                .post('/api/codeVerify',{
                     email:this.emailForm.email,
                     code:this.emailForm.code,
                 })
@@ -113,7 +114,7 @@
                     if(res.data.code===200){
                         //console.log(res)
                         this.$axios
-                        .post('/aa/changePassword',{
+                        .post('/api/changePassword',{
                              email:this.emailForm.email,
                             code:this.emailForm.code,
                             password:this.emailForm.password
@@ -140,6 +141,11 @@ a{
 }
 a:hover{
     color: #ff8080;
+}
+h3{
+    /* margin-bottom: 15px; */
+    font-weight: 500;
+    font-size: 20px;
 }
     .el-main {
     background-color: #fff;

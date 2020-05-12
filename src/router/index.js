@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/views/Login'
-import Findpsw from '@/views/Findpsw'
 import zhuce from '@/views/zhuce'
 import zhuceyi from '@/views/zhuceyi'
 import zhucexuqiufang from '@/views/zhucexuqiufang'
 import zhucexuqiufanggeren from '@/views/zhucexuqiufanggeren'
 import zhucexuqiufangqiye from '@/views/zhucexuqiufangqiye'
 import ChangePsw from '@/views/ChangePsw'
+import Cxy from '@/views/Cxy'
 
 
 
@@ -34,9 +34,9 @@ export default new Router({
             component: ChangePsw
         },
         {
-            path: '/findpsw',
-            name: 'Findpsw',
-            component: Findpsw
+            path: '/cxy',
+            name: 'Cxy',
+            component: Cxy
         },
         {
             path: '/zhuce',
