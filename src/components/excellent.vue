@@ -2,7 +2,7 @@
 <div>
     <el-container>
         <div class="cxy">
-            <h3>长安城下最耀眼的码农</h3>
+            <h3>长 安 城 下 最 耀 眼 的 码 农</h3>
             <ul>
                 <!-- <li v-for="item in list" :key="item">
                     <el-avatar class="left" :size="size" :src="src"></el-avatar>
@@ -87,6 +87,7 @@
 .cxy h3{
     text-align: center;
     margin: 20px 0;
+    font-weight: 400;
 }
 .cxy p{
     font-size: 12px;

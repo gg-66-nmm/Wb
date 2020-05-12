@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/views/Login'
+import Findpsw from '@/views/Findpsw'
 import zhuce from '@/views/zhuce'
 import zhuceyi from '@/views/zhuceyi'
 import zhucexuqiufang from '@/views/zhucexuqiufang'
@@ -9,6 +10,14 @@ import zhucexuqiufanggeren from '@/views/zhucexuqiufanggeren'
 import zhucexuqiufangqiye from '@/views/zhucexuqiufangqiye'
 import ChangePsw from '@/views/ChangePsw'
 import Cxy from '@/views/Cxy'
+import gerenxinxi from '@/views/gerenxinxi'
+import shimingrenzheng from '@/views/shimingrenzheng'
+import wodexiangmu from '@/views/wodexiangmu'
+import fabuxuqiu from '@/views/fabuxuqiu'
+import cuyxinxi from '@/views/cuyxinxi'
+
+
+
 
 
 
@@ -39,6 +48,16 @@ export default new Router({
             component: Cxy
         },
         {
+            path: '/cuyxinxi',
+            name: 'cuyxinxi',
+            component: cuyxinxi
+        },
+        {
+            path: '/findpsw',
+            name: 'Findpsw',
+            component: Findpsw
+        },
+        {
             path: '/zhuce',
             name: 'zhuce',
             component: zhuce
@@ -62,6 +81,26 @@ export default new Router({
             path: '/zhucexuqiufangqiye',
             name: 'zhucexuqiufangqiye',
             component: zhucexuqiufangqiye
+        },
+        {
+            path: '/gerenxinxi',
+            name: 'gerenxinxi',
+            component: gerenxinxi
+        },
+        {
+            path: '/shimingrenzheng',
+            name: 'shimingrenzheng',
+            component: shimingrenzheng
+        },
+        {
+            path: '/wodexiangmu',
+            name: 'wodexiang',
+            component: wodexiangmu
+        },
+        {
+            path: '/fabuxuqiu',
+            name: 'fabuxuqiu',
+            component: fabuxuqiu
         }
     ]
 })

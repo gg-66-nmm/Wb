@@ -11,8 +11,8 @@
                 <el-input placeholder="搜索你感兴趣的程序员" v-model="input">
                     <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
                 </el-input>
-                <el-menu-item index="3"><router-link to="" class="decoration">发布需求</router-link></el-menu-item>
-                <el-menu-item index="4"><router-link to="" class="decoration">请求签约</router-link></el-menu-item>
+                <el-menu-item index="3"><router-link to="fabuxuqiu" class="decoration">发布需求</router-link></el-menu-item>
+                <el-menu-item index="4"><router-link to="gerenxinxi" class="decoration">请求签约</router-link></el-menu-item>
                 <el-dropdown class="right">
                     <div class="head">
                         <el-avatar  :src="circleUrl"></el-avatar>
@@ -20,9 +20,9 @@
                         
                     </div>
                     <el-dropdown-menu class="el-dropdown-menu" slot="dropdown">
-                        <el-dropdown-item><router-link class="menu-item" to=""><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
-                        <el-dropdown-item><router-link class="menu-item" to=""><i class="el-icon-s-custom"></i>实名认证</router-link></el-dropdown-item>
-                        <el-dropdown-item><router-link class="menu-item" to=""><i class="el-icon-s-unfold"></i>我的项目</router-link></el-dropdown-item>
+                        <el-dropdown-item><router-link class="menu-item" to="cuyxinxi"><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
+                        <el-dropdown-item><router-link class="menu-item" to="shimingrenzheng"><i class="el-icon-s-custom"></i>实名认证</router-link></el-dropdown-item>
+                        <el-dropdown-item><router-link class="menu-item" to="wodexiangmu"><i class="el-icon-s-unfold"></i>我的项目</router-link></el-dropdown-item>
                         <el-dropdown-item><router-link class="menu-item" to=""><i class="el-icon-circle-close"></i>退出登录</router-link></el-dropdown-item>
                     </el-dropdown-menu>
                     
