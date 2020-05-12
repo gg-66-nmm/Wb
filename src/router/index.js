@@ -8,6 +8,14 @@ import zhuceyi from '@/views/zhuceyi'
 import zhucexuqiufang from '@/views/zhucexuqiufang'
 import zhucexuqiufanggeren from '@/views/zhucexuqiufanggeren'
 import zhucexuqiufangqiye from '@/views/zhucexuqiufangqiye'
+import gerenxinxi from '@/views/gerenxinxi'
+import shimingrenzheng from '@/views/shimingrenzheng'
+import wodexiangmu from '@/views/wodexiangmu'
+import fabuxuqiu from '@/views/fabuxuqiu'
+import cuyxinxi from '@/views/cuyxinxi'
+
+
+
 
 
 
@@ -26,6 +34,11 @@ export default new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/cuyxinxi',
+            name: 'cuyxinxi',
+            component: cuyxinxi
         },
         {
             path: '/findpsw',
@@ -56,6 +69,26 @@ export default new Router({
             path: '/zhucexuqiufangqiye',
             name: 'zhucexuqiufangqiye',
             component: zhucexuqiufangqiye
+        },
+        {
+            path: '/gerenxinxi',
+            name: 'gerenxinxi',
+            component: gerenxinxi
+        },
+        {
+            path: '/shimingrenzheng',
+            name: 'shimingrenzheng',
+            component: shimingrenzheng
+        },
+        {
+            path: '/wodexiangmu',
+            name: 'wodexiang',
+            component: wodexiangmu
+        },
+        {
+            path: '/fabuxuqiu',
+            name: 'fabuxuqiu',
+            component: fabuxuqiu
         }
     ]
 })
