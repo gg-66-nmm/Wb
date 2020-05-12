@@ -8,6 +8,8 @@ import zhuceyi from '@/views/zhuceyi'
 import zhucexuqiufang from '@/views/zhucexuqiufang'
 import zhucexuqiufanggeren from '@/views/zhucexuqiufanggeren'
 import zhucexuqiufangqiye from '@/views/zhucexuqiufangqiye'
+import ChangePsw from '@/views/ChangePsw'
+import Cxy from '@/views/Cxy'
 import gerenxinxi from '@/views/gerenxinxi'
 import shimingrenzheng from '@/views/shimingrenzheng'
 import wodexiangmu from '@/views/wodexiangmu'
@@ -34,6 +36,16 @@ export default new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/changepsw',
+            name: 'ChangePsw',
+            component: ChangePsw
+        },
+        {
+            path: '/cxy',
+            name: 'Cxy',
+            component: Cxy
         },
         {
             path: '/cuyxinxi',

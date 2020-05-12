@@ -1,5 +1,6 @@
 <template>
     <div>
+      <top></top>
         <el-container>
             <el-header style="font-size:25px;color:rgb(255,128,128);">我 的 项 目</el-header>
             <div style="width:100%;heifht:300px">
@@ -21,7 +22,11 @@
 </template>
 
 <script>
+import top from '@/components/head'
     export default {
+        components:{
+            top
+        },
         
     }
 </script>

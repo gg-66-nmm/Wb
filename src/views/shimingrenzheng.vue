@@ -1,5 +1,6 @@
 <template>
     <div>
+        <top></top>
         <el-container>
             <el-header>实名认证</el-header>
             <el-main>
@@ -32,7 +33,11 @@
 </template>
 
 <script>
+import top from '@/components/head'
     export default {
+        components:{
+            top
+        },
         data(){
             return{
                 ruleForm:{

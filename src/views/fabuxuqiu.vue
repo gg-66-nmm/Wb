@@ -1,5 +1,6 @@
 <template>
     <div>
+        <top></top>
         <el-container>
             <el-header style="font-size:20px;">发布需求</el-header>
                 <el-main>
@@ -61,7 +62,9 @@
 </template>
 
 <script>
+import top from '../components/head'
     export default {
+        components:{top},
         data(){
             return{
                 ruleForm:{

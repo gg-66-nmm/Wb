@@ -1,5 +1,6 @@
 <template>
     <div>
+      <top></top>
         <el-container>
         <el-aside width="200px">注册需求方类型
           <p @click="go()">返回身份选择</p> 
@@ -29,7 +30,11 @@
 </template>
 
 <script>
+ import top from '@/components/head'
     export default {
+        components:{
+            top
+        },
       methods:{
         go(){
           this.$router.push('/zhuce');

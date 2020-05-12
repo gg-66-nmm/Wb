@@ -1,5 +1,6 @@
 <template>
     <div>
+        <top></top>
         <form>
         <div class="jiafang">
             <ul>
@@ -44,7 +45,11 @@
 </template>
 
 <script>
+import top from '@/components/head'
     export default {
+        components:{
+            top
+        },
         data(){
             return {
                 shuju:{

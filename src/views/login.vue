@@ -2,17 +2,17 @@
     <div>
         <top></top>
         <el-main>
-            <h3>登录码市</h3>
+            <h3>欢迎登录长安城下最优秀的码农</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
-                <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="手机号/邮箱/用户名" ref="username" autocomplete="off"></el-input>
+                <el-form-item prop="email">
+                    <el-input v-model="ruleForm.email" placeholder="输入邮箱" ref="email" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input placeholder="输入密码" v-model="ruleForm.password" show-password></el-input>
                 </el-form-item>
                 <div class="row">
                     <el-checkbox v-model="checked">记住密码</el-checkbox>
-                    <router-link to="findpsw" class="findpsw cur">找回密码</router-link>
+                    <router-link to="changepsw" class="findpsw cur" @click="clear">找回密码</router-link>
                     <!-- <div class="findpsw right cur"><a href="findpsw">找回密码</a></div> -->
                 </div>                
                 <el-button type="primary"  @click="jump">登录</el-button>
@@ -33,8 +33,9 @@ import foot from '../components/footer'
         data(){
             var verifiname=(rule,value,callback)=>{
                 if(value===''){
-                    callback(new Error('*请输入账号'))
-                }else{
+                    callback(new Error('*请输入邮箱'))
+                }
+                else{
                     callback();
                 }
             };
@@ -47,11 +48,13 @@ import foot from '../components/footer'
             };
             return {
                 ruleForm:{
-                    username:'',
+                    email:'',
                     password:'',
+                    username:'',
+                    code:'',      
                 },
                 rules:{
-                    username:[
+                    email:[
                         {validator:verifiname,trigger:'blur'}
                     ],
                     password:[
@@ -59,10 +62,6 @@ import foot from '../components/footer'
                     ],
                 },
                
-                checked:true,
-                uname:"*请输入账号",
-                upsw:"*请输入密码",
-                aa:"！账号或密码输入错误",
                 checked:false,
             }
         },
@@ -70,26 +69,51 @@ import foot from '../components/footer'
         },
         methods:{
             jump(){
-                this.$axios
-                .post('/api/v2/api-docs',{
-                    username:this.Login.username,
-                    password:this.Login.password,
-                })
-                .then(successResponse=>{
-                    if(successResponse.data.code===200){
-                        // if()
-                        this.$router.replace({path:'./'})
-                    }
-                })
-                .catch(failResponse=>{
-                    new Error(failResponse)
-                })
+                const self=this;
+                if(this.ruleForm.email===''||this.ruleForm.password===''){
+                    this.$message.error("邮箱或密码不能为空")
+                }else{
+                    this.$axios.post('/api/login',{
+                        email:this.ruleForm.email,
+                        password:this.ruleForm.password,
+                    }).then(res=>{
+                        console.log(res)
+                        
+                        if(res.data.code==200){
+                            /* //当记住密码时向localStorage里面存储id跟密码
+                            if(this.checked==true){
+                                this.setlocalStorage({this.ruleForm.username})
+                            }else{
+                                this.clearlocalStorage();
+                            }     */                  
+                            self.$router.replace({path:'./'}) 
+                        }
+                    })
+                    .catch(failResponse=>{
+                        new Error(failResponse)
+
+                    })
+                }
                 /* console.log(this.ruleForm.username)
                 console.log(this.ruleForm.password) */
+            },/* 
+            //保存localStorage
+                setlocalStorage(c_email,c_pwd){
+                localStorage.siteName=c_name
+                localStorage.sitePassword=c_pwd
             },
-        },
+            //获取localStorage
+            getlocalStorage(){
+                this.ruleForm.email=localStorage.getItem(localStorage.key(1))
+                this.ruleForm.password=localStorage.getItem(localStorage.key(2))
+            },*/
+            //忘记密码，清空密码
+            clear:function(){
+                //this.setlocalStorage('','')
+            }
+        }, 
         mounted(){
-            
+            // this.getlocalStorage()
         }
         
     }
@@ -103,6 +127,11 @@ a{
 }
 a:hover{
     color: #ff8080;
+}
+h3{
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 20px;
 }
     .el-main {
     background-color: #fff;

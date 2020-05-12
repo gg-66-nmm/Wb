@@ -1,4 +1,6 @@
 <template>
+<div>
+  <top></top>
     <el-container>
         <el-header>完 善 个 人 信 息 后 才 能 签 约</el-header>
         <el-main>
@@ -160,10 +162,15 @@
             </el-form>
         </el-main>
     </el-container>
+    </div>
 </template>
 
 <script>
+import top from '@/components/head'
     export default {
+        components:{
+            top
+        },
     data() {
       return {
         ruleForm: {
