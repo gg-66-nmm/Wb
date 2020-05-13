@@ -8,6 +8,7 @@
           </ul>
       </div>
   </div>
+  <xmxq></xmxq>
   <cxy></cxy>
 </div>
    
@@ -16,10 +17,12 @@
 <script>
 import top from '@/components/head'
 import cxy from '@/components/excellent'
+import xmxq from '@/components/xiangmu'
 export default {
   components:{
     top,
     cxy,
+    xmxq,
   },
   
   data () {

@@ -2,13 +2,13 @@
     <div>
         <div class="bg"></div>
         <el-container>
-            <el-menu  class="el-menu-demo" mode="horizontal"  @select="handleSelect">
+            <el-menu  class="el-menu-demo" mode="horizontal" >
                 <div class="left logo">
                     <router-link to="/" class="decoration"><img src="../assets/logo.png" style="height:50px;width:75px" ></router-link>                    
                 </div>                
                 <el-menu-item index="1"><router-link to="/" class="decoration">首页</router-link></el-menu-item>
                 <el-menu-item index="2"><router-link to="/cxy" class="decoration">程序员</router-link></el-menu-item>
-                <el-input placeholder="搜索你感兴趣的程序员" v-model="input">
+                <el-input placeholder="搜索你感兴趣的程序员" v-model="searchData">
                     <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
                 </el-input>
                 <el-menu-item index="3"><router-link to="fabuxuqiu" class="decoration">发布需求</router-link></el-menu-item>
@@ -49,19 +49,31 @@
             return {
                     circleUrl:'',
                     username:'hhh',
-                    input:'',
+                    searchData:'',
                     activeIndex:2,
+                    bb:'',
                 
             }
+        },
+        /* mounted:{
+            init(){
+                console.log(messageInfo);
+            }
+        }, */
+        created(){
+            console.log(this.$route);
+            this.bb = this.$route.params.info;
+            console.log(this.bb)
         },
         methods:{
            search(){
 
            },
-           handleSelect(key, keyPath) {
+           /* handleSelect(key, keyPath) {
                 console.log(key, keyPath);
-            }
-        }
+            } */
+        },
+        // props:['messageInfo'],
     }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <top></top>
+        <top :messageInfo="messageInfo"></top>
         <el-main>
             <h3>欢迎登录长安城下最优秀的码农</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
@@ -47,6 +47,9 @@ import foot from '../components/footer'
                 }
             };
             return {
+                messageInfo:[],
+                isLogin:false,
+                name:123,
                 ruleForm:{
                     email:'',
                     password:'',
@@ -65,10 +68,14 @@ import foot from '../components/footer'
                 checked:false,
             }
         },
-        mounted(){
-        },
         methods:{
             jump(){
+                this.$router.push({
+                    name:"head",
+                    params:{
+                        info:this.name,
+                    }
+                })
                 const self=this;
                 if(this.ruleForm.email===''||this.ruleForm.password===''){
                     this.$message.error("邮箱或密码不能为空")
@@ -79,13 +86,15 @@ import foot from '../components/footer'
                     }).then(res=>{
                         console.log(res)
                         
-                        if(res.data.code==200){
+                        if(res.data.code===200){
                             /* //当记住密码时向localStorage里面存储id跟密码
                             if(this.checked==true){
                                 this.setlocalStorage({this.ruleForm.username})
                             }else{
                                 this.clearlocalStorage();
-                            }     */                  
+                            }     */   
+                            self.isLogin=true;
+                            self.messageInfo=res.data;
                             self.$router.replace({path:'./'}) 
                         }
                     })

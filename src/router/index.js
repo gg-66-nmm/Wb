@@ -15,6 +15,8 @@ import shimingrenzheng from '@/views/shimingrenzheng'
 import wodexiangmu from '@/views/wodexiangmu'
 import fabuxuqiu from '@/views/fabuxuqiu'
 import cuyxinxi from '@/views/cuyxinxi'
+import xiangmuxuqiu from '@/views/xiangmuxuqiu'
+import head from '@/components/head'
 
 
 
@@ -101,6 +103,16 @@ export default new Router({
             path: '/fabuxuqiu',
             name: 'fabuxuqiu',
             component: fabuxuqiu
+        },
+        {
+            path: '/head',
+            name: 'head',
+            component: head
+        },
+        {
+            path: '/xiangmuxuqiu',
+            name: 'xiangmuxuqiu',
+            component: xiangmuxuqiu
         }
     ]
 })
