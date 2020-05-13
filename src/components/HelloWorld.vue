@@ -4,11 +4,12 @@
   <div class="top-banner">
       <div class="banner-list">
           <ul>
-              <li><img src="../assets/top-banner-5.jpg" alt=""></li>
+              <li><img src="../assets/4gai.jpg" alt=""></li>
           </ul>
       </div>
   </div>
   <cxy></cxy>
+  <weiba></weiba>
 </div>
    
 </template>
@@ -16,10 +17,12 @@
 <script>
 import top from '@/components/head'
 import cxy from '@/components/excellent'
+import weiba from '@/components/weiba'
 export default {
   components:{
     top,
     cxy,
+    weiba,
   },
   
   data () {

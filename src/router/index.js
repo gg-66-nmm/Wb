@@ -15,6 +15,9 @@ import shimingrenzheng from '@/views/shimingrenzheng'
 import wodexiangmu from '@/views/wodexiangmu'
 import fabuxuqiu from '@/views/fabuxuqiu'
 import cuyxinxi from '@/views/cuyxinxi'
+import weiba from '@/components/weiba'
+import xuqiuxiangqing from '@/views/xuqiuxiangqing'
+
 
 
 
@@ -101,6 +104,16 @@ export default new Router({
             path: '/fabuxuqiu',
             name: 'fabuxuqiu',
             component: fabuxuqiu
+        },
+        {
+            path: '/weiba',
+            name: 'weiba',
+            component: weiba
+        },
+        {
+            path: '/xuqiuxiangqing',
+            name: 'xuqiuxiangqing',
+            component: xuqiuxiangqing
         }
     ]
 })

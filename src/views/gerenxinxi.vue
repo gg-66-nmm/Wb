@@ -8,6 +8,9 @@
                 <el-form-item label="昵称" prop="name">
                     <el-input placeholder="请输入昵称(3-10个字符)" size="small" v-model="ruleForm.name" style="width:200px"></el-input>
                 </el-form-item>
+                <el-form-item label="邮箱">
+                    <el-input placeholder="请输入邮箱" @focus="huoqujiaodian2()" @blur="shiqujiaodian2()" ref="input2" class="li3_1_1" size="small" v-model="ruleForm.email" style="width:200px"></el-input>
+                </el-form-item>
                 <el-form-item label="状态"  prop="zhuangtai">
                     <el-input size="small" placeholder="您的工作状态" v-model="ruleForm.zhuangtai" class="input-with-select zhuangtai" style="width:200px">
                         <el-select v-model="ruleForm.zhuangtai" slot="prepend" placeholder="请选择">
@@ -156,7 +159,7 @@
                     style="colro:#000;
                     background-color:rgb(255,128,128);
                     border:0px solid red;margin:10px auto;
-                    width:540px;">下 一 步</el-button>
+                    width:540px;" @click="tijiao()">下 一 步</el-button>
                 <!-- </el-form-item> -->
                 
             </el-form>
@@ -175,6 +178,7 @@ import top from '@/components/head'
       return {
         ruleForm: {
           name: '',//姓名
+          email:'',
           zhuangtai:'',//工作状态
           dizhi1:'',//所在省份
           dizhi2:'',//所在城市
@@ -232,6 +236,22 @@ import top from '@/components/head'
       };
     },
     methods: {
+      huoqujiaodian2(){
+                this.$refs.input2.placeholder=" ";
+            },
+            shiqujiaodian2(){
+                console.log(this.ruleForm.email);
+                // let bb=this.bb;
+                let zhengzhe=/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+                if (this.$refs.input2.value=="") {
+                    this.$refs.input2.placeholder='请输入邮箱';
+                }else if (!zhengzhe.test(this.ruleForm.email)) {
+                    console.log(3);
+                    this.ruleForm.email='';
+                    this.$refs.input2.placeholder='邮箱格式不正确';
+                    
+                }
+            },
         //上传图片相关
       handleRemove(file, fileList) {
         console.log(file, fileList);
@@ -240,6 +260,15 @@ import top from '@/components/head'
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
+      tijiao(){
+        this.$http.post('/api/user/user',{
+          userEmail:this.ruleForm.email,
+          userName:this.ruleForm.name,
+          
+        }).then(res=>{
+
+        })
+      }
       // tianjia(){
       //   // var x=this.$refs.jinli;
       //   // var y=this.$refs.divref;
@@ -251,6 +280,13 @@ import top from '@/components/head'
 </script>
 
 <style scoped>
+.li3_1{
+    width: 320px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer
+    /* border: 1px solid #ccc; */
+}
 .gongzuojingli{
     border: 1px solid #ccc;
     border-radius: 5px;
