@@ -187,15 +187,32 @@ import top from '@/components/head'
             shubiaoyichu(){
                 this.$refs.zhuce.style.background="rgb(255,128,128)";
                 if (this.shuju.name!=this.kong&&this.shuju.psw!=this.kong) {
-                    this.$http.post('/api/register',{
-                        code:this.shuju.yanzhengma,
-                        email:this.shuju.email,
-                        password:this.shuju.psw,
-                        username:this.shuju.name
+                    // this.$http.post('/api/register',{
+                    //     code:this.shuju.yanzhengma,
+                    //     email:this.shuju.email,
+                    //     password:this.shuju.psw,
+                    //     username:this.shuju.name
+                    // }).then(
+                    // (success)=>{
+                    //     console.log(success);
+                    //     this.$router.replace('/login');
+                    //     // if (success.data.code==200) {
+                    //     //     this.$router.replace({path:'/'})
+                    //     // }
+                    //     }
+                    // ).catch(()=>{
+
+                    // })
+
+                    this.$http.post('/zk/register',{
+                        verificationCode:this.shuju.yanzhengma,
+                        user_email:this.shuju.email,
+                        user_password:this.shuju.psw,
+                        user_name:this.shuju.name
                     }).then(
                     (success)=>{
                         console.log(success);
-                        this.$router.replace('/login');
+                        this.$router.push({path:'/login'});
                         // if (success.data.code==200) {
                         //     this.$router.replace({path:'/'})
                         // }
@@ -234,20 +251,31 @@ import top from '@/components/head'
                     this.shuju.email=this.kong;
                     this.$refs.input2.placeholder='邮箱格式不正确';
                     
-                }else{
-                    this.$http.post('/api/emailVerify',{
-                        email:this.shuju.email
-                    }).then((success)=>{
-                        console.log(success);
-                        if (success.data.code==200) {
-                            this.shuju.email=this.kong;
-                            this.$refs.input2.placeholder='邮箱已被注册';
-                        }
-                    })
+                // }else{
+                //     this.$http.post('/api/emailVerify',{
+                //         email:this.shuju.email
+                //     }).then((success)=>{
+                //         console.log(success);
+                //         if (success.data.code==200) {
+                //             this.shuju.email=this.kong;
+                //             this.$refs.input2.placeholder='邮箱已被注册';
+                //         }
+                //     })
                 }
             },
             fasongyanzheng(){
-                this.$http.post('/api/sendEmail',{email:this.shuju.email}).then(
+                // this.$http.post('/api/sendEmail',{email:this.shuju.email}).then(
+                //     (success)=>{
+                //         console.log(success)
+                //         // if (success.data.code==200) {
+                //         //     this.$router.replace({path:'/'})
+                //         // }
+                //     }
+                // ).catch(()=>{
+
+                // })
+
+                this.$http.post('/zk/verification/code',{user_email:this.shuju.email}).then(
                     (success)=>{
                         console.log(success)
                         // if (success.data.code==200) {

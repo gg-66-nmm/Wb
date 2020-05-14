@@ -98,7 +98,7 @@ import foot from '@/components/weiba'
                         realNameVo.append("idCardOpposite",this.filelistf);
                         realNameVo.append("idNumber",this.ruleForm.zjh);
                         realNameVo.append("realName",this.ruleForm.name);
-                    this.$http.post('/api/realName/verify',realNameVo).then(
+                    this.$http.post('/zk/real/name',realNameVo).then(
                         (res)=>{
                             console.log(res);
                         }

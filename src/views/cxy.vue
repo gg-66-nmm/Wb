@@ -1,7 +1,7 @@
 <template>
     <div>
         <top></top>
-        <div class="xuanxk">
+        <div class="xuanxk" @click="go()">
             <ul>
                 <li  v-for="(item,index) in xinxi" :key="index">
                    <span class="title"> {{item.title}}</span>
@@ -101,6 +101,7 @@ import top from '@/components/head'
             return {
                 value:'',
                 radio:1,
+                email:'',
                 xinxi:[
                     {
                         title:"角色",
@@ -118,7 +119,10 @@ import top from '@/components/head'
                 ]
             }
         },
-        mounted(){
+        methods:{
+            go(){
+
+            }
             // console.log(this.xinxi[0].info)
         }
     }

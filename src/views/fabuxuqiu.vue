@@ -115,24 +115,24 @@ import foot from '../components/weiba'
                 this.filelist=wj.file;
             },
             fabu(){
-                // let formdata =new FormData();
-                // formdata.append("demandFile",this.filelist);
-                // formdata.append("demandBudget",this.ruleForm.zijin);
-                // formdata.append("demandDetail",this.ruleForm.jieshao);
-                // formdata.append("demandName",this.ruleForm.name);
-                // formdata.append("demandType",this.leixing);
-                // this.$http.post('/api/demand/demand',formdata).then(res=>{
-                //     console.log(res);
-                // })
-                 let kzformdata =new FormData();
-                kzformdata.append("demand_file",this.filelist);
-                kzformdata.append("demand_budget",this.ruleForm.zijin);
-                kzformdata.append("demand_detail",this.ruleForm.jieshao);
-                kzformdata.append("demand_name",this.ruleForm.name);
-                kzformdata.append("demand_type",this.leixing);
-                this.$http.post('/zk/insert/demand',kzformdata).then(res=>{
+                let formdata =new FormData();
+                formdata.append("demandFile",this.filelist);
+                formdata.append("demandBudget",this.ruleForm.zijin);
+                formdata.append("demandDetail",this.ruleForm.jieshao);
+                formdata.append("demandName",this.ruleForm.name);
+                formdata.append("demandType",this.leixing);
+                this.$http.post('/api/demand/demand',formdata).then(res=>{
                     console.log(res);
                 })
+                //  let kzformdata =new FormData();
+                // kzformdata.append("demand_file",this.filelist);
+                // kzformdata.append("demand_budget",this.ruleForm.zijin);
+                // kzformdata.append("demand_detail",this.ruleForm.jieshao);
+                // kzformdata.append("demand_name",this.ruleForm.name);
+                // kzformdata.append("demand_type",this.leixing);
+                // this.$http.post('/zk/insert/demand',kzformdata).then(res=>{
+                //     console.log(res);
+                // })
             },
         }
     }
