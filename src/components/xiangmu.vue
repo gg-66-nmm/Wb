@@ -2,7 +2,7 @@
     <div>
          <div class="content">
             <ul>
-                <li>
+                <!-- <li>
                     <el-row :gutter="20">
                         <el-col :span="18">
                             <div class="content_left">
@@ -17,22 +17,22 @@
                         </el-col>
                 
                     </el-row>
-                </li>
-                <!--<li v-for="(item,index)in description" :key="key">
+                </li> -->
+                <li v-for="(item,index) in message" :key="index">
                     <el-row :gutter="20">
                          <el-col :span="18">
                             <div class="content_left">
-                                <div class="content_name"><span class="item_id">NO.{{item.id}}</span>{{item.demandName}}</div>
-                                <div class="content_xuqiu">类型：<span>{{item.demandType}}</span></div>
-                                <div class="content_state">{{item.state}}</div>
+                                <div class="content_name"><span class="item_id">NO.{{item.demand_id}}</span>{{item.demand_name}}</div>
+                                <div class="content_xuqiu">类型：<span>{{item.demand_type}}</span></div>
+                                <div class="content_state">{{item.demand_state===0 ? '招募中' : item.demand_state===1 ? '开发中' :'已结束'}}</div>
                             </div>
                             
                         </el-col>
                         <el-col :span="6">
-                            <div class="content_budget">￥{{item.demandBudget}}</div>
+                            <div class="content_budget">￥{{item.demand_budget}}</div>
                         </el-col>
                     </el-row>
-                </li> -->
+                </li>
             </ul>
         </div>
     </div>
@@ -42,9 +42,16 @@
     export default {
         data(){
             return{
-                
+                message:[],
+                state:'',
             }
         },
+        created(){
+            this.$axios.get('/zk/see/all/demand').then(res=>{
+                this.message=res.data.data.listDemand
+                console.log(this.message);
+            })
+        }
     }
 </script>
 

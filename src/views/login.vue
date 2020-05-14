@@ -87,7 +87,7 @@ import foot from '../components/footer'
                                 this.clearlocalStorage();
                             }     */   
                             self.isLogin=true;
-                            localStorage.setItem('message',JSON.stringify(this.ruleForm));
+                            sessionStorage.setItem('message',JSON.stringify(this.ruleForm.email));
                             self.$router.push({path:'/'}) 
                         }
                     })

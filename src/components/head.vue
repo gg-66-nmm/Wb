@@ -58,9 +58,16 @@
             }
         },
         created(){
-            /* console.log(this.$route);
-            this.bb = this.$route.params.info;
-            console.log(this.bb) */
+            const email=sessionStorage.getItem('message')
+            console.log(email);
+            // this.$axios.get('/api/user/user',{parmas:{userEmail:'644391351@qq.com'}})
+            // .then(res=>{
+            //     console.log(res)
+            // })
+            this.$axios.get('/zk/information',{parmas:{user_email:"2893324092@qq.com"}})
+            .then(res=>{
+                console.log(res)
+            })
         },
         methods:{
             go(){
