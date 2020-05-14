@@ -27,32 +27,34 @@
                 
                 
                 <li>
-                    <el-avatar class="left" src="../assets/logo.png"></el-avatar>
-                    <div class="left">
-                        <p>
-                            <span class="content_title">油封科技</span>
-                            <label>北京</label>
-                            <label>其他</label>
-                            <label>8年</label>
-                        </p>
-                        <p>
-                            <span class="content_main">技能：</span>
-                            <label>java</label>
-                            <label>java</label>
-                            <label>java</label>
-                        </p>
-                        <p>
-                            <span class="content_main">作品：</span>
-                            <label>网络攻击地图</label>
-                            <label>网络攻击地图</label>
-                            <label>网络攻击地图</label>
-                        </p>
-                        <p class="huise">工作时间：<span>工作日09:00-23:00、周末08:00-23:00</span></p>
-                    </div>
-                    <div class="right qianyue">
-                        <p><span>100</span>元/天</p>
-                        <p><el-button type="danger" plain>康康他</el-button></p>
-                    </div>
+                    <router-link to="/xuqiuxiangqing">
+                        <el-avatar class="left" src="../assets/logo.png"></el-avatar>
+                        <div class="left">
+                            <p>
+                                <span class="content_title">油封科技</span>
+                                <label>北京</label>
+                                <label>其他</label>
+                                <label>8年</label>
+                            </p>
+                            <p>
+                                <span class="content_main">技能：</span>
+                                <label>java</label>
+                                <label>java</label>
+                                <label>java</label>
+                            </p>
+                            <p>
+                                <span class="content_main">作品：</span>
+                                <label>网络攻击地图</label>
+                                <label>网络攻击地图</label>
+                                <label>网络攻击地图</label>
+                            </p>
+                            <p class="huise">工作时间：<span>工作日09:00-23:00、周末08:00-23:00</span></p>
+                        </div>
+                        <div class="right qianyue">
+                            <p><span>100</span>元/天</p>
+                            <p><el-button type="danger" plain>康康他</el-button></p>
+                        </div>
+                    </router-link>
                 </li>
                 <li>
                     <el-avatar class="left" src="../assets/logo.png"></el-avatar>

@@ -54,11 +54,15 @@ import foot from '../components/footer'
     color: rgb(255, 128, 128);
     text-align: center;
     line-height: 160px;
+    height: 500px;
     position: relative;
   }
   
   .el-container {
     margin-bottom: 40px;
+    margin-left: 200px;
+    margin-top: 20px;
+
   }
   
   .el-container:nth-child(5) .el-aside,
@@ -83,8 +87,8 @@ import foot from '../components/footer'
  }
  .shenfen2{
         position: absolute;
-      top: 25px;
-      left: 570px;
+      top: 200px;
+      left: 10px;
  }
 
 .shenfen img{

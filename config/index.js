@@ -17,6 +17,13 @@ module.exports = {
                 pathRewrite: {
                     '^/api': 'http://106.13.164.214:8000/',
                 }
+            },
+            '/zk': {
+                target: 'http://192.168.1.121:9999/',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/zk': 'http://192.168.1.121:9999/',
+                }
             }
         },
 

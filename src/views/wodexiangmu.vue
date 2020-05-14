@@ -2,7 +2,27 @@
     <div>
       <top></top>
         <el-container>
-            <el-header style="font-size:25px;color:rgb(255,128,128);">我 的 项 目</el-header>
+          <el-header style="font-size:25px;">我 的 项 目</el-header>
+          <div style="width:100%;heifht:300px;margin-left:100px;">
+            <el-tabs :tab-position="tabPosition" style="height: 200px;">
+              <el-tab-pane label="待完成项目" style="margin-top:20px;">
+                <div class="zhanshi" style="width:80%;height:300px;float:left;">
+                    <div class="zhanshi1"></div>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="项目进行中" style="margin-top:20px;">
+                <div class="zhanshi" style="width:80%;height:300px;float:left;">
+                    <div class="zhanshi1"></div>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="已完成项目" style="margin-top:20px;">
+                <div class="zhanshi" style="width:80%;height:300px;float:left;">
+                    <div class="zhanshi1"></div>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+            <!-- <el-header style="font-size:25px;">我 的 项 目</el-header>
             <div style="width:100%;heifht:300px">
                 <div style="width:20%;height:300px;float:left;">
                     <ul style="list-style:none;">
@@ -14,18 +34,26 @@
                 <div class="zhanshi" style="width:80%;height:300px;float:left;">
                     <div class="zhanshi1"></div>
                 </div>
-            </div>
+            </div> -->
             <!-- <el-aside width="200px">Aside</el-aside>
             <el-main>Main</el-main> -->
         </el-container>
+        <foot></foot>
     </div>
 </template>
 
 <script>
 import top from '@/components/head'
+import foot from '@/components/weiba'
     export default {
+      data(){
+        return{
+           tabPosition: 'left'
+        }
+        
+      },
         components:{
-            top
+            top,foot
         },
         
     }
@@ -34,8 +62,7 @@ import top from '@/components/head'
 <style scoped>
 .zhanshi{
     width:80%;
-    height:300px;
-    background-color:yellow;
+    height:200px;
 }
 .el-container div ul li{
     cursor: pointer;
@@ -46,7 +73,7 @@ import top from '@/components/head'
     text-align: center;
     border:1px solid #ccc;
     font-size: 20px;
-    color: rgb(255,128,128);
+    /* color: rgb(255,128,128); */
 }
 .el-header, .el-footer {
     background-color: #B3C0D1;

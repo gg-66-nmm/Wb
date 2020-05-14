@@ -1,6 +1,6 @@
 <template>
     <div>
-        <top :messageInfo="messageInfo"></top>
+        <top></top>
         <el-main>
             <h3>欢迎登录长安城下最优秀的码农</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
@@ -47,7 +47,6 @@ import foot from '../components/footer'
                 }
             };
             return {
-                messageInfo:[],
                 isLogin:false,
                 name:123,
                 ruleForm:{
@@ -70,12 +69,6 @@ import foot from '../components/footer'
         },
         methods:{
             jump(){
-                this.$router.push({
-                    name:"head",
-                    params:{
-                        info:this.name,
-                    }
-                })
                 const self=this;
                 if(this.ruleForm.email===''||this.ruleForm.password===''){
                     this.$message.error("邮箱或密码不能为空")
@@ -94,8 +87,8 @@ import foot from '../components/footer'
                                 this.clearlocalStorage();
                             }     */   
                             self.isLogin=true;
-                            self.messageInfo=res.data;
-                            self.$router.replace({path:'./'}) 
+                            localStorage.setItem('message',JSON.stringify(this.ruleForm));
+                            self.$router.push({path:'/'}) 
                         }
                     })
                     .catch(failResponse=>{

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/views/Login'
-import Findpsw from '@/views/Findpsw'
 import zhuce from '@/views/zhuce'
 import zhuceyi from '@/views/zhuceyi'
 import zhucexuqiufang from '@/views/zhucexuqiufang'
@@ -16,7 +15,10 @@ import wodexiangmu from '@/views/wodexiangmu'
 import fabuxuqiu from '@/views/fabuxuqiu'
 import cuyxinxi from '@/views/cuyxinxi'
 import xiangmuxuqiu from '@/views/xiangmuxuqiu'
-import head from '@/components/head'
+// import head from '@/components/head'
+import weiba from '@/components/weiba'
+import xuqiuxiangqing from '@/views/xuqiuxiangqing'
+
 
 
 
@@ -53,11 +55,6 @@ export default new Router({
             path: '/cuyxinxi',
             name: 'cuyxinxi',
             component: cuyxinxi
-        },
-        {
-            path: '/findpsw',
-            name: 'Findpsw',
-            component: Findpsw
         },
         {
             path: '/zhuce',
@@ -104,15 +101,25 @@ export default new Router({
             name: 'fabuxuqiu',
             component: fabuxuqiu
         },
-        {
+        /* {
             path: '/head',
             name: 'head',
             component: head
-        },
+        }, */
         {
             path: '/xiangmuxuqiu',
             name: 'xiangmuxuqiu',
             component: xiangmuxuqiu
+        },
+        {
+            path: '/weiba',
+            name: 'weiba',
+            component: weiba
+        },
+        {
+            path: '/xuqiuxiangqing',
+            name: 'xuqiuxiangqing',
+            component: xuqiuxiangqing
         }
     ]
 })

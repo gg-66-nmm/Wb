@@ -26,14 +26,17 @@
           </router-link>
         </el-main>
         </el-container>
+        <foot></foot>
     </div>
+    
 </template>
 
 <script>
  import top from '@/components/head'
+ import foot from '@/components/weiba'
     export default {
         components:{
-            top
+            top,foot
         },
       methods:{
         go(){
@@ -67,11 +70,14 @@
     color: rgb(255, 128, 128);
     text-align: center;
     line-height: 160px;
+    height: 500px;
     position: relative;
+    margin-top: 20px;
   }
   
   .el-container {
     margin-bottom: 40px;
+    margin-left: 200px;
   }
   
   .el-container:nth-child(5) .el-aside,
@@ -96,8 +102,8 @@
  }
  .shenfen2{
       position: absolute;
-      top: 25px;
-      left: 570px;
+      top: 200px;
+      left: 10px;
  }
 
 .shenfen img{

@@ -58,13 +58,15 @@
                     </el-form>
                 </el-main>
         </el-container>
+        <foot></foot>
     </div>
 </template>
 
 <script>
 import top from '../components/head'
+import foot from '../components/weiba'
     export default {
-        components:{top},
+        components:{top,foot},
         data(){
             return{
                 ruleForm:{
@@ -113,21 +115,24 @@ import top from '../components/head'
                 this.filelist=wj.file;
             },
             fabu(){
-                // console.log(this.$refs.fabu.checked);
-                // console.log(aa)
-                // if (this.$refs.fabu.checked) {
-                    // this.$refs[aa].validata(valid=>{
-                        let formdata =new FormData();
-                        formdata.append("demandFile",this.filelist);
-                        formdata.append("demandBudget",this.ruleForm.zijin);
-                        formdata.append("demandDetail",this.ruleForm.jieshao);
-                        formdata.append("demandName",this.ruleForm.name);
-                        formdata.append("demandType",this.leixing);
-                    // })
-                    this.$http.post('/api/demand/demand',formdata).then(res=>{
-                        console.log(res);
-                    })
-                // }
+                // let formdata =new FormData();
+                // formdata.append("demandFile",this.filelist);
+                // formdata.append("demandBudget",this.ruleForm.zijin);
+                // formdata.append("demandDetail",this.ruleForm.jieshao);
+                // formdata.append("demandName",this.ruleForm.name);
+                // formdata.append("demandType",this.leixing);
+                // this.$http.post('/api/demand/demand',formdata).then(res=>{
+                //     console.log(res);
+                // })
+                 let kzformdata =new FormData();
+                kzformdata.append("demand_file",this.filelist);
+                kzformdata.append("demand_budget",this.ruleForm.zijin);
+                kzformdata.append("demand_detail",this.ruleForm.jieshao);
+                kzformdata.append("demand_name",this.ruleForm.name);
+                kzformdata.append("demand_type",this.leixing);
+                this.$http.post('/zk/insert/demand',kzformdata).then(res=>{
+                    console.log(res);
+                })
             },
         }
     }

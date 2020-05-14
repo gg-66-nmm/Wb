@@ -13,12 +13,34 @@
                     </el-form-item>
                     <div style="width:200px;heidht:100px;margin-left:80px;">
                         <el-upload
-                        class="upload-demo"
-                        drag
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        multiple>
-                        <i class="el-icon-upload"></i>
-                        <div class="el-upload__text">将证件正反面照片拖到此处，或<em>点击上传</em></div>
+                            class="upload-demo"
+                            action
+                            multiple
+                            :limit="3"
+                            :http-request="filez"
+                            >
+                                <el-button style="height:30px;width:480px;
+                                border:0px solid red;
+                                height:40px;font-size:16px; 
+                                background-color:rgb(255,128,128);
+                                color:#fff;" 
+                                type="primary">上传身份证正面</el-button>
+                                
+                        </el-upload>
+                        <el-upload
+                            class="upload-demo"
+                            action
+                            multiple
+                            :limit="3"
+                            :http-request="filef"
+                            >
+                                <el-button style="margin-top:20px;height:30px;width:480px;
+                                border:0px solid red;
+                                height:40px;font-size:16px; 
+                                background-color:rgb(255,128,128);
+                                color:#fff;" 
+                                type="primary">上传身份证反面</el-button>
+                                
                         </el-upload>
                     </div>
                     <el-button type="danger" style="colro:#000;
@@ -29,14 +51,16 @@
                 </el-form>
             </el-main>
         </el-container>
+        <foot></foot>
     </div>
 </template>
 
 <script>
 import top from '@/components/head'
+import foot from '@/components/weiba'
     export default {
         components:{
-            top
+            top,foot
         },
         data(){
             return{
@@ -54,16 +78,29 @@ import top from '@/components/head'
                         { min: 18, max: 18, message: '长度为18', trigger: 'blur' },
                     ]
                 } ,
+                filelistz:{},
+                filelistf:{},
             };
         },
         methods:{
+            filez(wj){
+                console.log(wj);
+                this.filelistz=wj.file;
+            },
+            filef(wj){
+                console.log(wj);
+                this.filelistf=wj.file;
+            },
             renzheng(){
                 if(this.ruleForm.name!=''&&this.ruleForm.zjh!=''){
-                    this.$http.post('/api/',{
-                        
-                    }).then(
+                    let realNameVo =new FormData();
+                        realNameVo.append("idCardFront",this.filelistz);
+                        realNameVo.append("idCardOpposite",this.filelistf);
+                        realNameVo.append("idNumber",this.ruleForm.zjh);
+                        realNameVo.append("realName",this.ruleForm.name);
+                    this.$http.post('/api/realName/verify',realNameVo).then(
                         (res)=>{
-
+                            console.log(res);
                         }
                     )
                 }

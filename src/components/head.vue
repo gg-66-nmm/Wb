@@ -12,7 +12,10 @@
                     <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
                 </el-input>
                 <el-menu-item index="3"><router-link to="fabuxuqiu" class="decoration">发布需求</router-link></el-menu-item>
-                <el-menu-item index="4"><router-link to="gerenxinxi" class="decoration">请求签约</router-link></el-menu-item>
+                <el-menu-item index="4">
+                    <span class="decoration" @click="go()">请求签约</span>
+                    <!-- <router-link to="gerenxinxi" class="decoration">请求签约</router-link> -->
+                    </el-menu-item>
                 <el-dropdown class="right">
                     <div class="head">
                         <el-avatar  :src="circleUrl"></el-avatar>
@@ -38,7 +41,6 @@
             </el-menu>
         </el-container>
         <div class="line"></div>
-        
     </div>
     
 </template>
@@ -55,17 +57,20 @@
                 
             }
         },
-        /* mounted:{
-            init(){
-                console.log(messageInfo);
-            }
-        }, */
         created(){
-            console.log(this.$route);
+            /* console.log(this.$route);
             this.bb = this.$route.params.info;
-            console.log(this.bb)
+            console.log(this.bb) */
         },
         methods:{
+            go(){
+                this.$http.post('/api/realName/realname').then(res=>{
+                    console.log(res);
+                    if (code==200) {
+                        this.$router.replace({path:'/gerenxinxi'})
+                    }
+                }) 
+            },
            search(){
 
            },

@@ -41,14 +41,16 @@
             </ul>
         </div>
         </form>
+        <foot></foot>
     </div>
 </template>
 
 <script>
 import top from '@/components/head'
+ import foot from '@/components/weiba'
     export default {
         components:{
-            top
+            top,foot
         },
         data(){
             return {

@@ -25,18 +25,21 @@
                     {{gongzuoneirong}}</div>
             </el-main>
         </el-container>
+        <foot></foot>
     </div>
 </template>
 
 <script>
 import top from '../components/head'
+import foot from '../components/weiba'
     export default {
       components:{
-        top
+        top,
+        foot
       },
         data(){
             return{
-                name:"然军粮",
+                name:"冉军良",
                 dizhi:"广州",
                 id:"高级工程师",
                 rx:[100],
