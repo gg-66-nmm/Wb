@@ -1,6 +1,6 @@
 <template>
     <div>
-        <top></top>
+        <top :email="ruleForm.email"></top>
         <el-main>
             <h3>欢迎登录长安城下最优秀的码农</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="kuang">
@@ -73,9 +73,32 @@ import foot from '../components/footer'
                 if(this.ruleForm.email===''||this.ruleForm.password===''){
                     this.$message.error("邮箱或密码不能为空")
                 }else{
-                    this.$axios.post('/api/login',{
-                        email:this.ruleForm.email,
-                        password:this.ruleForm.password,
+                    // this.$axios.post('/api/login',{
+                    //     email:this.ruleForm.email,
+                    //     password:this.ruleForm.password,
+                    // }).then(res=>{
+                    //     console.log(res)
+                        
+                    //     if(res.data.code===200){
+                    //         /* //当记住密码时向localStorage里面存储id跟密码
+                    //         if(this.checked==true){
+                    //             this.setlocalStorage({this.ruleForm.username})
+                    //         }else{
+                    //             this.clearlocalStorage();
+                    //         }     */   
+                    //         self.isLogin=true;
+                    //         localStorage.setItem('message',JSON.stringify(this.ruleForm));
+                    //         self.$router.push({path:'/'}) 
+                    //     }
+                    // })
+                    // .catch(failResponse=>{
+                    //     new Error(failResponse)
+
+                    // })
+
+                    this.$axios.post('/zk/enroll',{
+                        user_email:this.ruleForm.email,
+                        user_password:this.ruleForm.password,
                     }).then(res=>{
                         console.log(res)
                         
@@ -88,7 +111,8 @@ import foot from '../components/footer'
                             }     */   
                             self.isLogin=true;
                             localStorage.setItem('message',JSON.stringify(this.ruleForm));
-                            self.$router.push({path:'/'}) 
+                            self.$router.push({path:'/'}); 
+                            this.$router.push('/?info='+this.ruleForm.email);
                         }
                     })
                     .catch(failResponse=>{

@@ -23,7 +23,7 @@
                         
                     </div>
                     <el-dropdown-menu class="el-dropdown-menu" slot="dropdown">
-                        <el-dropdown-item><router-link class="menu-item" to="cuyxinxi"><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
+                        <el-dropdown-item><router-link class="menu-item" @click="go1()" to="cuyxinxi"><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
                         <el-dropdown-item><router-link class="menu-item" to="shimingrenzheng"><i class="el-icon-s-custom"></i>实名认证</router-link></el-dropdown-item>
                         <el-dropdown-item><router-link class="menu-item" to="wodexiangmu"><i class="el-icon-s-unfold"></i>我的项目</router-link></el-dropdown-item>
                         <el-dropdown-item><router-link class="menu-item" to=""><i class="el-icon-circle-close"></i>退出登录</router-link></el-dropdown-item>
@@ -54,15 +54,26 @@
                     searchData:'',
                     activeIndex:2,
                     bb:'',
-                
+                    // email:'',
             }
         },
+        // props:{
+        //     email:{
+        //         type:String,
+        //         required:true,
+        //     }
+        // },
         created(){
             /* console.log(this.$route);
             this.bb = this.$route.params.info;
             console.log(this.bb) */
         },
         methods:{
+            go1(){
+                console.log(email);
+                // this.email=this.$route.query.info;
+                //     this.$router.push('/cuyxinxi?info='+this.email);
+            },
             go(){
                 this.$http.post('/api/realName/realname').then(res=>{
                     console.log(res);

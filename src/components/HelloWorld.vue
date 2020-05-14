@@ -1,6 +1,6 @@
 <template>
 <div>
-  <top></top>
+  <top ></top>
   <div class="top-banner">
       <div class="banner-list">
           <ul>
@@ -30,9 +30,13 @@ export default {
   
   data () {
     return {
-      
+      email:'',
     }
+  },
+  methods:{
+    
   }
+  
 }
 </script>
 

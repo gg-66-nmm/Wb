@@ -1,7 +1,7 @@
 <template>
 <div>
     <el-container>
-        <div class="cxy">
+        <div class="cxy" @click="go()">
             <h3>长 安 城 下 最 耀 眼 的 码 农</h3>
             <ul>
                 <!-- <li v-for="item in list" :key="item">
@@ -74,7 +74,14 @@
                     {}
                 ] */
                 size:'large',
+                email:'',
             }
+        },
+        methods:{
+            // go(){
+            //     this.email=this.$route.query.info;
+            //         this.$router.push('/cuyxinxi?info='+this.email);
+            //     }
         }
     }
 </script>
