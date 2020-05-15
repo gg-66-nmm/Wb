@@ -18,6 +18,8 @@ import xiangmuxuqiu from '@/views/xiangmuxuqiu'
 // import head from '@/components/head'
 import weiba from '@/components/weiba'
 import xuqiuxiangqing from '@/views/xuqiuxiangqing'
+// import heda from '@/components/head'
+
 
 
 
@@ -101,11 +103,11 @@ export default new Router({
             name: 'fabuxuqiu',
             component: fabuxuqiu
         },
-        /* {
-            path: '/head',
-            name: 'head',
-            component: head
-        }, */
+        // {
+        //     path: '/head',
+        //     name: 'head',
+        //     component: head
+        // },
         {
             path: '/xiangmuxuqiu',
             name: 'xiangmuxuqiu',

@@ -12,7 +12,7 @@
                     <p style="margin-top:17px;font-size:15px;margin-left:10px">工作状态:{{zhuangtai}}</p>
                     <p style="margin-top:18px;font-size:15px;margin-left:10px">工作时间:<span style="color:rgb(255,128,128)">周内:</span>{{zhounei}},<span style="color:rgb(255,128,128)">周末:</span>:{{zhoumo}}</p>
                     <p style="margin-top:18px;font-size:15px;margin-left:10px">学历:<span style="color:rgb(255,128,128)">{{xueli}}</span></p>
-                    <el-button type="danger" plain disabled style="margin-bottom:20px;margin-top:20px;color:#fff;background-color:rgb(255,128,128)">和他聊聊</el-button>
+                    <el-button type="danger" @click="fasong()" style="margin-bottom:20px;margin-top:20px;color:#fff;background-color:rgb(255,128,128)">和他聊聊</el-button>
                 </div>
             </el-aside>
             <el-main>
@@ -50,7 +50,17 @@ import foot from '../components/weiba'
                 gongzuoshijian:199856,
                 gongzuoneirong:"撒旦反对广泛和国际化撒旦返回结果返回的格式发阿飞的规范化感觉的是法国好几个非递归算法的是单号发给客户范德萨时返回的数据城市丢分一个大师兄大幅改变VS卡成为u复古味官方地位u关于热负荷嗲额个废物并且而非怪物把剩下的钱沃尔u我发给",
                 xueli:"本科",
+                // email:'1',
            }
+        },
+        methods:{
+          fasong(){
+            this.email=this.$route.query.info;
+            console.log(this.email);
+            this.$http.get('/zk/communicate',{parmas:{user_email:this.email}}).then(res=>{
+              console.log(res);
+            })
+          }
         }
     }
 </script>
