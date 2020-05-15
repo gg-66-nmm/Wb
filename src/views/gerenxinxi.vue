@@ -108,7 +108,8 @@
                     action=""
                     list-type="picture-card"
                     :on-preview="handlePictureCardPreview"
-                    :on-remove="handleRemove">
+                    :on-remove="handleRemove"
+                    :http-request="file">
                         <i class="el-icon-plus"></i>
                     </el-upload>
                     <el-dialog :visible.sync="dialogVisible">
@@ -122,11 +123,11 @@
                     </el-input>
                 </el-form-item>
                 </div>
-                <el-button type="primary" @click="tianjia()" style="colro:#000;
+                <el-button type="primary" @click="touxiang()" style="colro:#000;
                     background-color:rgb(255,128,128);
                     border:0px solid red;margin:10px auto;
                     width:540px;"
-                    >我经验丰富！</el-button>
+                    >上传头像</el-button>
                 <div ref="divref"></div>
 
                 <div class="gongzuojingli">
@@ -207,7 +208,8 @@ import foot from '@/components/weiba'
             value: '选项3',
             label: '研究生'
         }],
-        xuewei: ''
+        xuewei: '',
+        bb:"",
         },
         dialogImageUrl: '',//头像
         dialogVisible: false,
@@ -234,10 +236,31 @@ import foot from '@/components/weiba'
           gongzuojingli: [
             {required: true, message: '必填', trigger: 'blur'}
           ],
-        }
+        },
+        filelist:{},
       };
+      
+    },
+    created(){
+      var bb=this.$route.info;
+      console.log(bb);
     },
     methods: {
+      file(wj){
+        console.log(wj);
+        this.filelist=wj.file;
+        console.log(this.filelist);
+      },
+      touxiang(){
+        var aa=new FormData();
+        aa.append('user_email',this.ruleForm.email),
+        aa.append('imgFile',this.filelist)
+        this.$http.post('/zk/up/avatar',aa).then(
+          res=>{
+            console.log(res);
+          }
+        )
+      },
       huoqujiaodian2(){
                 this.$refs.input2.placeholder=" ";
             },
@@ -263,12 +286,36 @@ import foot from '@/components/weiba'
         this.dialogVisible = true;
       },
       tijiao(){
-        this.$http.post('/api/user/user',{
-          userEmail:this.ruleForm.email,
-          userName:this.ruleForm.name,
+        // this.$http.post('/api/user/user',{
+        //   userEmail:this.ruleForm.email,
+        //   userName:this.ruleForm.name,
           
-        }).then(res=>{
+        // }).then(res=>{
 
+        // })
+        this.$http.post('/zk/insert/programmer/message',{
+          // prog_area:this.ruleForm.dizhi1,
+          prog_area:"西安",
+          // prog_company:this.ruleForm.gongsizhiwei,
+          prog_company:"西点",
+          // prog_hours:this.ruleForm.value1,
+          prog_hours:"23",
+          // prog_intro:this.ruleForm.jianjie,
+          prog_intro:"斯蒂芬干哈",
+          // prog_job_post:this.ruleForm.gongsizhiwei,
+          // prog_job_skill:this.ruleForm.hiyefangxiang,
+          prog_job_skill:"java",
+          // prog_job_status:this.ruleForm.zhuangtai,
+          // prog_state:1,
+          prog_wage_day:this.ruleForm.rixin,
+          // prog_workday:this.ruleForm.xuelishijian,
+          prog_workday:"工作日",
+          // prog_working:this.ruleForm.xuelishijian,
+          prog_working:"远程",
+          // real_name:this.ruleForm.name,
+          user_email:this.ruleForm.email,
+        }).then(res=>{
+          console.log(res);
         })
       }
       // tianjia(){
