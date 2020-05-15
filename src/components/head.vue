@@ -16,25 +16,24 @@
                     <span class="decoration" @click="go()">请求签约</span>
                     <!-- <router-link to="gerenxinxi" class="decoration">请求签约</router-link> -->
                     </el-menu-item>
-                <el-dropdown class="right">
-                    <div class="head">
-                        <el-avatar  :src="circleUrl"></el-avatar>
-                        <span >{{username}}</span>
-                        
+                <el-dropdown class="right" v-if="isLogin">
+                    <div class="head" ref="head">
+                        <el-avatar  :src="user.user_avatar"></el-avatar>
+                        <span >{{user.user_name}}</span>
                     </div>
                     <el-dropdown-menu class="el-dropdown-menu" slot="dropdown">
-                        <el-dropdown-item><router-link class="menu-item" @click="go1()" to="cuyxinxi"><i class="el-icon-user"></i>个人中心</router-link></el-dropdown-item>
+                        <el-dropdown-item><span class="menu-item" @click="go1()" ><i class="el-icon-user"></i>个人中心</span></el-dropdown-item>
                         <el-dropdown-item><router-link class="menu-item" to="shimingrenzheng"><i class="el-icon-s-custom"></i>实名认证</router-link></el-dropdown-item>
                         <el-dropdown-item><router-link class="menu-item" to="wodexiangmu"><i class="el-icon-s-unfold"></i>我的项目</router-link></el-dropdown-item>
-                        <el-dropdown-item><router-link class="menu-item" to=""><i class="el-icon-circle-close"></i>退出登录</router-link></el-dropdown-item>
+                        <el-dropdown-item><span class="menu-item" @click="quit()" ><i class="el-icon-circle-close"></i>退出登录</span></el-dropdown-item>
                     </el-dropdown-menu>
                     
                 </el-dropdown>
                 
-                <div class="zhuce">
+                <div class="zhuce" ref="register"  v-if="!isLogin">
                     <router-link to="zhuce" class="decoration">注册</router-link>
                 </div>
-                <div class="zhuce">
+                <div class="zhuce" ref="login"  v-if="!isLogin">
                     <router-link to="login" class="decoration">登录</router-link>
                 </div>
                 
@@ -47,6 +46,7 @@
 
 <script>
     export default {
+        inject:['reload'],
         data(){
             return {
                     circleUrl:'',
@@ -55,39 +55,47 @@
                     activeIndex:2,
                     bb:'',
                     email:'',
+                    user:[],
+                    isLogin:false,
             }
         },
-        // props:{
-        //     email:{
-        //         type:String,
-        //         required:true,
-        //     }
-        // },
-        created(){
-            this.email=sessionStorage.getItem('message')
-            // this.$axios.get('/api/user/user',{parmas:{userEmail:'644391351@qq.com'}})
-            // .then(res=>{
-            //     console.log(res)
-            // })
+        // 获取个人信息
+        beforeCreate(){
+            this.email=sessionStorage.getItem('message').replace(/\"/g,"")
+            // console.log(this.email)
             this.$axios.post('/zk/information',{user_email:this.email})
             .then(res=>{
                 console.log(res)
+                this.user=res.data.data.user;
+                console.log(this.user)
+                this.isLogin=true
+                console.log(this.isLogin)               
             })
         },
+        
         methods:{
+            // 个人中心
             go1(){
-                console.log(email);
+                // console.log(email);
+                this.$router.push({path:'/cuyxinxi'})
                 // this.email=this.$route.query.info;
                 //     this.$router.push('/cuyxinxi?info='+this.email);
             },
+            // 请求签约
             go(){
                 this.$http.post('/api/realName/realname').then(res=>{
                     console.log(res);
                     if (code==200) {
-                        this.$router.replace({path:'/gerenxinxi'})
+                        this.$router.push({path:'/gerenxinxi'})
                     }
                 }) 
             },
+            // 退出登录
+           quit(){
+               sessionStorage.clear();
+               this.isLogin=false;
+               this.reload()
+           },
            search(){
 
            },
@@ -123,6 +131,9 @@
 }
 .el-container{
     text-align: center;
+}
+.el-dropdown-menu{
+    margin-top: -10px;
 }
 .el-menu-demo{
     height: 60px;
@@ -179,7 +190,7 @@
       text-decoration: none;
       color: #000;
       display: inline-block;
-      padding: 10px 20px;
+      padding: 5px 30px;
   }
   
 </style>

@@ -195,9 +195,9 @@ import top from '@/components/head'
                 this.$http.post('/zk/verification/code',{user_email:this.shuju.email}).then(
                     (success)=>{
                         console.log(success)
-                        if (success.data.code==200) {
+                        /* if (success.data.code==200) {
                             this.$router.replace({path:'/'})
-                        }
+                        } */
                     }
                 ).catch(()=>{
 

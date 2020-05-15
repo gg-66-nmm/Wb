@@ -4,9 +4,9 @@
         <div class="cxy" @click="go()">
             <h3>长 安 城 下 最 耀 眼 的 码 农</h3>
             <ul>
-                <li v-for="(item,index) in message" :key="index">
-                    <el-avatar class="left" :size="size" :src="item.src"></el-avatar>
-                    <h5>{{item.prog_company}}</h5>
+                <li v-for="(item,index) in message" :key="index" @click="xiangqing(index)">
+                    <el-avatar class="left" :size="size" :src="item.user_avatar"></el-avatar>
+                    <h5>{{item.user_name}}</h5>
                     <p >
                         <span>最擅长：{{item.prog_job_skill}}</span>
                         <span> {{item.prog_job_post}}</span>
@@ -47,6 +47,12 @@
                 console.log(res.data.data.showExcellent)
                 this.message=res.data.data.showExcellent;
             })
+        },
+        methods:{
+            xiangqing(bb){
+                this.$router.push("/cuyxinxi?into="+this.message[bb].user_email);
+                // console.log(this.message[bb].user_email)
+            }
         }
     }
 </script>

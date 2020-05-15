@@ -109,7 +109,7 @@ import foot from '../components/footer'
                             }else{
                                 this.clearlocalStorage();
                             }     */   
-                            self.isLogin=true;
+                            self.isLogin=true;                            
                             sessionStorage.setItem('message',JSON.stringify(this.ruleForm.email));
                             self.$router.push({path:'/'}) 
                             /* localStorage.setItem('message',JSON.stringify(this.ruleForm));
@@ -140,9 +140,6 @@ import foot from '../components/footer'
                 //this.setlocalStorage('','')
             }
         }, 
-        mounted(){
-            // this.getlocalStorage()
-        }
         
     }
     
