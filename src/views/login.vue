@@ -112,7 +112,14 @@ import foot from '../components/footer'
                             self.isLogin=true;
                             localStorage.setItem('message',JSON.stringify(this.ruleForm));
                             self.$router.push({path:'/'}); 
-                            this.$router.push('/?info='+this.ruleForm.email);
+                            // this.$router.push('/?info='+this.ruleForm.email);
+
+                            this.$router.push({
+                                name: "gerenxinxi",
+                                params:{
+                                    info:this.ruleForm.email
+                                }
+                            })
                         }
                     })
                     .catch(failResponse=>{
