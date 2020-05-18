@@ -16,12 +16,7 @@
                         <span>{{item.prog_workday}}{{item.prog_hours}}</span>
                     </p>
                 </li>
-                <!-- <li>
-                    <el-avatar class="left" :size="size" src="../assets/logo.png"></el-avatar>
-                    <h5>油封科技</h5>
-                    <p >最擅长：java</p>
-                    <p >城市：北京</p>
-                </li> -->
+                
             </ul>
         </div>
     </el-container>
@@ -38,6 +33,7 @@
                     {}
                 ] */
                 size:'large',
+                email:'',
                 message:[],
             }
         },
@@ -52,7 +48,11 @@
             xiangqing(bb){
                 this.$router.push("/cuyxinxi?into="+this.message[bb].user_email);
                 // console.log(this.message[bb].user_email)
-            }
+            },
+            // go(){
+            //     this.email=this.$route.query.info;
+            //         this.$router.push('/cuyxinxi?info='+this.email);
+            //     }
         }
     }
 </script>
@@ -71,12 +71,6 @@
     font-size: 12px;
     color: #777777;
     margin: 10px;
-}
-span{
-    margin-left: 15px;
-}
-h5{
-    padding-left: 15px;
 }
 .left{
     float: left;

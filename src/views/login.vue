@@ -34,6 +34,8 @@ import foot from '../components/footer'
             var verifiname=(rule,value,callback)=>{
                 if(value===''){
                     callback(new Error('*请输入邮箱'))
+                }else if(!/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value)){
+                    callback(new Error('*邮箱格式不正确'))
                 }
                 else{
                     callback();
@@ -95,54 +97,22 @@ import foot from '../components/footer'
                     //     new Error(failResponse)
 
                     // })
-
                     this.$axios.post('/zk/enroll',{
                         user_email:this.ruleForm.email,
                         user_password:this.ruleForm.password,
                     }).then(res=>{
                         console.log(res)
-                        
                         if(res.data.code===200){
-                            /* //当记住密码时向localStorage里面存储id跟密码
-                            if(this.checked==true){
-                                this.setlocalStorage({this.ruleForm.username})
-                            }else{
-                                this.clearlocalStorage();
-                            }     */   
                             self.isLogin=true;                            
                             sessionStorage.setItem('message',JSON.stringify(this.ruleForm.email));
                             self.$router.push({path:'/'}) 
-                            /* localStorage.setItem('message',JSON.stringify(this.ruleForm));
-                            self.$router.push({path:'/'}); 
-                            this.$router.push('/?info='+this.ruleForm.email); */
-                        }
-                    })
-                    .catch(failResponse=>{
-                        new Error(failResponse)
-
+                        } 
                     })
                 }
-                /* console.log(this.ruleForm.username)
-                console.log(this.ruleForm.password) */
-            },/* 
-            //保存localStorage
-                setlocalStorage(c_email,c_pwd){
-                localStorage.siteName=c_name
-                localStorage.sitePassword=c_pwd
-            },
-            //获取localStorage
-            getlocalStorage(){
-                this.ruleForm.email=localStorage.getItem(localStorage.key(1))
-                this.ruleForm.password=localStorage.getItem(localStorage.key(2))
-            },*/
-            //忘记密码，清空密码
-            clear:function(){
-                //this.setlocalStorage('','')
-            }
-        }, 
+        }
         
     }
-    
+    }
 </script>
 
 <style scoped>

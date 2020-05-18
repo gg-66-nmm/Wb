@@ -43,15 +43,9 @@
         data(){
             return{
                 message:[],
-                state:'',
+                state:'', 
             }
         },
-        created(){
-            this.$axios.get('/zk/see/all/demand').then(res=>{
-                this.message=res.data.data.listDemand
-                console.log(this.message);
-            })
-        }
     }
 </script>
 

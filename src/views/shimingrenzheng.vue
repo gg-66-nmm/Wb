@@ -93,22 +93,12 @@ import foot from '@/components/weiba'
             },
             renzheng(){
                 if(this.ruleForm.name!=''&&this.ruleForm.zjh!=''){
-                    // let realNameVo =new FormData();
-                    //     realNameVo.append("idCardFront",this.filelistz);
-                    //     realNameVo.append("idCardOpposite",this.filelistf);
-                    //     realNameVo.append("idNumber",this.ruleForm.zjh);
-                    //     realNameVo.append("realName",this.ruleForm.name);
-                    // this.$http.post('/zk/real/name',realNameVo).then(
-                    //     (res)=>{
-                    //         console.log(res);
-                    //     }
-                    // )
-
-                    this.$http.post('/zk/real/name',{
-
-                        // idNumber:this.ruleForm.zjh,
-                        // realName:this.ruleForm.name,
-                    }).then(
+                    let realNameVo =new FormData();
+                        realNameVo.append("id_card_front",this.filelistz);
+                        realNameVo.append("id_card_opposite",this.filelistf);
+                        realNameVo.append("id_number",this.ruleForm.zjh);
+                        realNameVo.append("real_name",this.ruleForm.name);
+                    this.$http.post('/zk/real/name',realNameVo).then(
                         (res)=>{
                             console.log(res);
                         }

@@ -8,9 +8,10 @@
                 </div>                
                 <el-menu-item index="1"><router-link to="/" class="decoration">首页</router-link></el-menu-item>
                 <el-menu-item index="2"><router-link to="/cxy" class="decoration">程序员</router-link></el-menu-item>
-                <el-input placeholder="搜索你感兴趣的程序员" v-model="searchData">
+                <el-input placeholder="搜索你感兴趣的程序员" @keyup.native="sousuo()" v-model="searchData">
                     <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
                 </el-input>
+                <div class="tishi" ref='tishi' ></div>
                 <el-menu-item index="3"><router-link to="fabuxuqiu" class="decoration">发布需求</router-link></el-menu-item>
                 <el-menu-item index="4">
                     <span class="decoration" @click="go()">请求签约</span>
@@ -75,6 +76,45 @@
         
         methods:{
             // 个人中心
+                    sousuozong:[],
+                    zhanshi:[],
+                    // nnn,
+                    // email:'',
+            
+        },
+        // props:{
+        //     email:{
+        //         type:String,
+        //         required:true,
+        //     }
+        // },
+        // created(){
+        //     /* */ console.log(this.$route);
+        //     this.bb = this.$route.params.info;
+        //     console.log(this.bb)
+        // /},
+        
+        methods:{
+             sousuo(){
+                if (this.searchData!='') {
+                    console.log(22);
+                    this.$refs.tishi.style.display="block";
+                }else{
+                    this.$refs.tishi.style.display="none";
+                };
+                this.$http.post('/zk/search',{
+                    key:this.searchData,
+                }).then(res=>{
+                    console.log(res);
+                    if (res.data.code==200) {
+                        this.sousuozong=res.data.data.listProgrammer;
+                        console.log(this.sousuozong);
+                        this.zhankai=this.sousuozong.indexOf(this.searchData);
+                        console.log(this.zhankai)
+                        this.nnn=this.zhankai.real_name;
+                    }
+                });
+            },
             go1(){
                 // console.log(email);
                 this.$router.push({path:'/cuyxinxi'})
@@ -89,6 +129,12 @@
                         this.$router.push({path:'/gerenxinxi'})
                     }
                 }) 
+                // this.$http.post('/api/realName/realname').then(res=>{
+                //     console.log(res);
+                //     if (code==200) {
+                        this.$router.replace({path:'/gerenxinxi'})
+                //     }
+                // }) 
             },
             // 退出登录
            quit(){
@@ -96,18 +142,25 @@
                this.isLogin=false;
                this.reload()
            },
-           search(){
-
-           },
-           /* handleSelect(key, keyPath) {
-                console.log(key, keyPath);
-            } */
+           
         },
-        // props:['messageInfo'],
     }
 </script>
 
 <style scoped>
+.tishi{
+    width:300px;
+    height:100px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background-color:white;
+    position: absolute;
+    top:70px;
+    left: 540px;
+    z-index: 1;
+    overflow: hidden;
+    display: none;
+}
 *{
     padding: 0;
     margin: 0;

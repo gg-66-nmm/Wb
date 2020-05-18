@@ -40,6 +40,8 @@
             var verifimail=(rule,value,callback)=>{
                 if(value===''){
                     callback(new Error('*邮箱不能为空'))
+                }else if(!/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value)){
+                    callback(new Error('*邮箱格式不正确'))
                 }else{
                     callback();
                 }
