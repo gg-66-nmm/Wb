@@ -11,23 +11,24 @@
                 <el-form-item label="邮箱">
                     <el-input placeholder="请输入邮箱" @focus="huoqujiaodian2()" @blur="shiqujiaodian2()" ref="input2" class="li3_1_1" size="small" v-model="ruleForm.email" style="width:200px"></el-input>
                 </el-form-item>
-                <el-form-item label="状态"  prop="zhuangtai">
-                    <el-input size="small" placeholder="您的工作状态" v-model="ruleForm.zhuangtai" class="input-with-select zhuangtai" style="width:200px">
-                        <el-select v-model="ruleForm.zhuangtai" slot="prepend" placeholder="请选择">
+                <el-form-item label="状态"  >
+                    <el-input size="small" placeholder="您的工作状态" v-model="ruleForm.zhuangtai"  style="width:200px">
+                        <!-- <el-select v-model="ruleForm.zhuangtai" slot="prepend" placeholder="请选择">
                             <el-option label="自由职业" value="自由职业"></el-option>
                             <el-option label="兼职" value="兼职"></el-option>
-                        </el-select>
+                        </el-select> -->
+                        <!-- <el-input></el-input> -->
                     </el-input>
                 </el-form-item>
                  <el-form-item label="所在地" prop="dizhi1">
-                    <el-input placeholder="你所在的省份" size="small" v-model="ruleForm.dizhi1" style="width:200px"></el-input>
+                    <!-- <el-input placeholder="你所在的省份" size="small" v-model="ruleForm.dizhi1" style="width:200px"></el-input> -->
                     <el-input placeholder="你所在的城市" size="small" v-model="ruleForm.dizhi2" style="width:200px"></el-input>
                 </el-form-item>
                 <el-form-item label="日薪" prop="rixin">
                     <el-input placeholder="天/元(8小时)" size="small" v-model="ruleForm.rixin" style="width:200px"></el-input>
                 </el-form-item>
                 <el-form-item label="工作日">
-                     <el-time-picker
+                     <!-- <el-time-picker
                         is-range
                         arrow-control
                         v-model="ruleForm.value1"
@@ -36,10 +37,11 @@
                         end-placeholder="结束时间"
                         placeholder="选择时间范围"
                         size="small">
-                    </el-time-picker>
+                    </el-time-picker> -->
+                    <el-input placeholder="工作时间" size="small" v-model="ruleForm.value1" style="width:200px"></el-input>
                 </el-form-item>
                 <el-form-item label="周末">
-                     <el-time-picker
+                     <!-- <el-time-picker
                         is-range
                         arrow-control
                         v-model="ruleForm.value2"
@@ -48,7 +50,9 @@
                         end-placeholder="结束时间"
                         placeholder="选择时间范围"
                         size="small">
-                    </el-time-picker>
+                    </el-time-picker> -->
+                    <el-input placeholder="周工作时间" size="small" v-model="ruleForm.value2" style="width:200px"></el-input>
+
                 </el-form-item>
                 <el-form-item label="工作方式">
                     <el-radio-group v-model="ruleForm.fangshi">
@@ -71,8 +75,8 @@
                         </el-select>
                     </el-input>
                 </el-form-item>
-                <el-form-item label="具体擅长" prop="jutizhiye">
-                    <el-checkbox-group v-model="ruleForm.jutizhiye">
+                <el-form-item label="具体擅长" >
+                    <!-- <el-checkbox-group v-model="ruleForm.jutizhiye">
                         <el-checkbox-button label="java" name="jutizhiye"></el-checkbox-button>
                         <el-checkbox-button label="php" name="jutizhiye"></el-checkbox-button>
                         <el-checkbox-button label="c++" name="jutizhiye"></el-checkbox-button>
@@ -82,11 +86,13 @@
                         <el-checkbox-button label="前端" name="jutizhiye"></el-checkbox-button>
                         <el-checkbox-button label="UI设计" name="jutizhiye"></el-checkbox-button>
                         <el-checkbox-button label="其他" name="jutizhiye"></el-checkbox-button>
-                    </el-checkbox-group>
+                    </el-checkbox-group> -->
+                    <el-input placeholder="具体职业" size="small" v-model="ruleForm.jutizhiye" style="width:200px"></el-input>
+
                 </el-form-item>
                 <div class="gongzuojingli" ref="jinli">
                 <el-form-item label="工作经历">
-                    <div class="block">
+                    <!-- <div class="block">
                         <el-date-picker
                         v-model="ruleForm.xuelishijian"
                         type="monthrange"
@@ -96,14 +102,14 @@
                         start-placeholder="开始月份"
                         end-placeholder="结束月份">
                         </el-date-picker>
-                    </div>
+                    </div> -->
                 </el-form-item>
                 <el-form-item prop="gongzuojingli">
-                    <el-input placeholder="公司名称" name="gongzuojingli" size="small" v-model="ruleForm.gongzuojingli" style="width:200px"></el-input>
-                    <el-input placeholder="所属职位" size="small" v-model="ruleForm.gongsizhiwei" style="width:200px"></el-input>
+                    <el-input placeholder="公司名称" name="gongzuojingli" size="small" v-model="ruleForm.gongsizhiwei" style="width:200px"></el-input>
+                    <!-- <el-input placeholder="所属职位" size="small" v-model="ruleForm.gongsizhiwei" style="width:200px"></el-input> -->
                 </el-form-item>
                 <el-form-item>
-                    个人影像
+                    <!-- 个人影像
                     <el-upload
                     action=""
                     list-type="picture-card"
@@ -114,7 +120,7 @@
                     </el-upload>
                     <el-dialog :visible.sync="dialogVisible">
                         <img width="100%" :src="dialogImageUrl" alt="">
-                    </el-dialog>
+                    </el-dialog> -->
                     <el-input
                     type="textarea"
                     :autosize="{ minRows: 1, maxRows: 4}"
@@ -123,15 +129,15 @@
                     </el-input>
                 </el-form-item>
                 </div>
-                <el-button type="primary" @click="touxiang()" style="colro:#000;
+                <!-- <el-button type="primary" @click="touxiang()" style="colro:#000;
                     background-color:rgb(255,128,128);
                     border:0px solid red;margin:10px auto;
                     width:540px;"
-                    >上传头像</el-button>
-                <div ref="divref"></div>
+                    >上传头像</el-button> -->
+                <!-- <div ref="divref"></div> -->
 
                 <div class="gongzuojingli">
-                <el-form-item label="教育经历">
+                <!-- <el-form-item label="教育经历">
                     <div class="block">
                         <el-date-picker
                         v-model="ruleForm.jiaoyushijian"
@@ -153,7 +159,7 @@
                         :value="item.value">
                         </el-option>
                     </el-select>
-                </el-form-item>
+                </el-form-item> -->
                 </div>
                 <!-- <el-form-item> -->
                     <el-button type="danger" 
@@ -186,11 +192,11 @@ import foot from '@/components/weiba'
           dizhi1:'',//所在省份
           dizhi2:'',//所在城市
           rixin:'',//期望日薪
-          value1: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],//周内工作时间段
-          value2: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],//周末工作时间段
+          value1: "",//周内工作时间段
+          value2: '',//周末工作时间段
           fangshi:'',//工作方式
           zhiyefangxiang:'',//职业方向
-          jutizhiye:[],//具体职业
+          jutizhiye:'',//具体职业
           xuelishijian:'',//工作经历时间
           gongzuojingli:'',//工作经历
           gongsizhiwei:'',//所属职位
@@ -243,7 +249,28 @@ import foot from '@/components/weiba'
     },
     created(){
       var bb=this.$route.info;
-      console.log(bb);
+      // console.log(bb);
+      this.ruleForm.email=sessionStorage.getItem("message").slice(1,-1)
+      // console.log(this.ruleForm.email);
+      this.$http.post('/zk/programmer/detailed/message',{user_email:this.ruleForm.email}).then(
+          res=>{
+            console.log(res);
+            this.ruleForm.name=res.data.data.user.user_name;
+            this.ruleForm.email=res.data.data.programmer.user_email;
+            this.ruleForm.fangshi=res.data.data.programmer.prog_working;
+            this.ruleForm.rixin=res.data.data.programmer.prog_wage_day;
+            this.ruleForm.zhuangtai=res.data.data.programmer.prog_job_status;
+            this.ruleForm.zhiyefangxiang=res.data.data.programmer.prog_job_post;
+            this.ruleForm.jutizhiye=res.data.data.programmer.prog_job_skill;
+            this.ruleForm.jianjie=res.data.data.programmer.prog_intro;
+            this.ruleForm.dizhi2=res.data.data.programmer.prog_area;
+            this.ruleForm.value1=res.data.data.programmer.prog_workday;
+            this.ruleForm.value2=res.data.data.programmer.prog_hours;
+            this.ruleForm.gongsizhiwei=res.data.data.programmer.prog_company;
+
+            // console.log(this.ruleForm.name);
+          }
+        )
     },
     methods: {
       file(wj){
@@ -270,12 +297,11 @@ import foot from '@/components/weiba'
                 let zhengzhe=/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
                 if (this.$refs.input2.value=="") {
                     this.$refs.input2.placeholder='请输入邮箱';
-                }else if (!zhengzhe.test(this.ruleForm.email)) {
-                    console.log(3);
+                }/* else if (!zhengzhe.test(this.ruleForm.email)) {
                     this.ruleForm.email='';
                     this.$refs.input2.placeholder='邮箱格式不正确';
                     
-                }
+                } */
             },
         //上传图片相关
       handleRemove(file, fileList) {
@@ -286,6 +312,7 @@ import foot from '@/components/weiba'
         this.dialogVisible = true;
       },
       tijiao(){
+        this.$router.push({path:'/'})
         // this.$http.post('/api/user/user',{
         //   userEmail:this.ruleForm.email,
         //   userName:this.ruleForm.name,
@@ -293,30 +320,31 @@ import foot from '@/components/weiba'
         // }).then(res=>{
 
         // })
-        this.$http.post('/zk/insert/programmer/message',{
-          // prog_area:this.ruleForm.dizhi1,
-          prog_area:"西安",
-          // prog_company:this.ruleForm.gongsizhiwei,
-          prog_company:"西点",
-          // prog_hours:this.ruleForm.value1,
-          prog_hours:"23",
-          // prog_intro:this.ruleForm.jianjie,
-          prog_intro:"斯蒂芬干哈",
-          // prog_job_post:this.ruleForm.gongsizhiwei,
-          // prog_job_skill:this.ruleForm.hiyefangxiang,
-          prog_job_skill:"java",
-          // prog_job_status:this.ruleForm.zhuangtai,
-          // prog_state:1,
-          prog_wage_day:this.ruleForm.rixin,
-          // prog_workday:this.ruleForm.xuelishijian,
-          prog_workday:"工作日",
-          // prog_working:this.ruleForm.xuelishijian,
-          prog_working:"远程",
-          // real_name:this.ruleForm.name,
-          user_email:this.ruleForm.email,
-        }).then(res=>{
-          console.log(res);
-        })
+        
+        // this.$http.post('/zk/insert/programmer/message',{
+        //   prog_area:this.ruleForm.dizhi1,
+        //   // prog_area:"西安",
+        //   prog_company:this.ruleForm.gongsizhiwei,
+        //   // prog_company:"西点",
+        //   prog_hours:this.ruleForm.value1,
+        //   // prog_hours:"23",
+        //   prog_intro:this.ruleForm.jianjie,
+        //   // prog_intro:"斯蒂芬干哈",
+        //   prog_job_post:this.ruleForm.gongsizhiwei,
+        //   prog_job_skill:this.ruleForm.hiyefangxiang,
+        //   // prog_job_skill:"java",
+        //   prog_job_status:this.ruleForm.zhuangtai,
+        //   prog_state:1,
+        //   // prog_wage_day:"100",
+        //   prog_workday:this.ruleForm.xuelishijian,
+        //   // prog_workday:"工作日",
+        //   prog_working:this.ruleForm.xuelishijian,
+        //   // prog_working:"远程",
+        //   real_name:this.ruleForm.name,
+        //   user_email:this.ruleForm.email
+        // }).then(res=>{
+        //   console.log(res);
+        // })
       }
       // tianjia(){
       //   // var x=this.$refs.jinli;

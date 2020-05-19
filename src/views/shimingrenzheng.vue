@@ -8,6 +8,9 @@
                     <el-form-item prop="name" label="姓名">
                         <el-input placeholder="姓名" size="small" v-model="ruleForm.name"></el-input>
                     </el-form-item>
+                    <el-form-item  label="邮箱">
+                        <el-input placeholder="邮箱" size="small" v-model="ruleForm.email"></el-input>
+                    </el-form-item>
                     <el-form-item prop="zjh" label="证件号">
                         <el-input placeholder="证件号" size="small" v-model="ruleForm.zjh"></el-input>
                     </el-form-item>
@@ -67,6 +70,7 @@ import foot from '@/components/weiba'
                 ruleForm:{
                     naem:'',
                     zjh:'',
+                    email:'',
                 },
                 rules:{
                     name: [
@@ -98,6 +102,7 @@ import foot from '@/components/weiba'
                         realNameVo.append("id_card_opposite",this.filelistf);
                         realNameVo.append("id_number",this.ruleForm.zjh);
                         realNameVo.append("real_name",this.ruleForm.name);
+                        realNameVo.append("user_email",this.ruleForm.email);
                     this.$http.post('/zk/real/name',realNameVo).then(
                         (res)=>{
                             console.log(res);

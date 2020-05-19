@@ -19,10 +19,10 @@ module.exports = {
                 }
             },
             '/zk': {
-                target: 'http://192.168.1.112:9999/',
+                target: 'http://192.168.31.254:9999/',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/zk': 'http://192.168.1.112:9999/',
+                    '^/zk': 'http://192.168.31.254:9999/',
                 }
             }
         },
