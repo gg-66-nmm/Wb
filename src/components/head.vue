@@ -9,9 +9,9 @@
                 <el-menu-item index="1"><router-link to="/" class="decoration">首页</router-link></el-menu-item>
                 <el-menu-item index="2"><router-link to="/cxy" class="decoration">程序员</router-link></el-menu-item>
                 <el-input placeholder="搜索你感兴趣的程序员" @keyup.native="sousuo()" v-model="searchData">
-                    <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+                    <el-button slot="append" icon="el-icon-search" @click="sousuo()"></el-button>
                 </el-input>
-                <div class="tishi" ref='tishi' ></div>
+                <div class="tishi" ref='tishi' ><p style="margin-top:20px;">{{nnn}}</p></div>
                 <el-menu-item index="3"><router-link to="fabuxuqiu" class="decoration">发布需求</router-link></el-menu-item>
                 <el-menu-item index="4">
                     <span class="decoration" @click="go()">请求签约</span>
@@ -58,6 +58,9 @@
                     email:'',
                     user:[],
                     isLogin:false,
+                    sousuozong:[],
+                    zhanshi:[],
+                    nnn:[],
             }
         },
         // 获取个人信息
@@ -72,15 +75,6 @@
                 this.isLogin=true
                 console.log(this.isLogin)               
             })
-        },
-        
-        methods:{
-            // 个人中心
-                    sousuozong:[],
-                    zhanshi:[],
-                    // nnn,
-                    // email:'',
-            
         },
         // props:{
         //     email:{
@@ -109,9 +103,22 @@
                     if (res.data.code==200) {
                         this.sousuozong=res.data.data.listProgrammer;
                         console.log(this.sousuozong);
-                        this.zhankai=this.sousuozong.indexOf(this.searchData);
-                        console.log(this.zhankai)
-                        this.nnn=this.zhankai.real_name;
+                        var aa='';
+                        // this.zhankai=this.sousuozong.indexOf(this.searchData);
+                        for (var i = 0; i < this.sousuozong.length; i++) {
+                            aa=this.sousuozong[i].real_name;
+                            console.log(aa);
+                            this.nnn=aa;
+                        }
+                        console.log(aa)
+                        if (this.searchData=='') {
+                            console.log(1)
+                            this.nnn='';
+                            console.log(1)
+
+                        }
+                        // console.log(this.sousuozong.real_name)
+                        // console.log(this.nnn)
                     }
                 });
             },
@@ -123,16 +130,23 @@
             },
             // 请求签约
             go(){
-                this.$http.post('/api/realName/realname').then(res=>{
+                // var parm=JSON.stringify({
+                //     demand_id:"1",
+                //     user_email:this.email,
+                // })
+                this.$http.get('/zk/receipt',{params:{
+                    demand_id:"1",
+                    user_email:this.email,
+                }}).then(res=>{
                     console.log(res);
-                    if (code==200) {
+                    if (code!==400) {
                         this.$router.push({path:'/gerenxinxi'})
                     }
                 }) 
                 // this.$http.post('/api/realName/realname').then(res=>{
                 //     console.log(res);
                 //     if (code==200) {
-                        this.$router.replace({path:'/gerenxinxi'})
+                        // this.$router.replace({path:'/gerenxinxi'})
                 //     }
                 // }) 
             },
