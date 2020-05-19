@@ -18,7 +18,7 @@
                 
                     </el-row>
                 </li> -->
-                <li v-for="(item,index) in message" :key="index">
+                <li v-for="(item,index) in message" :key="index" @click="jump(index)">
                     <el-row :gutter="20">
                          <el-col :span="18">
                             <div class="content_left">
@@ -46,6 +46,18 @@
                 state:'', 
             }
         },
+        created(){
+            this.$axios.get('/zk/see/all/demand')
+            .then(res=>{
+                this.message=res.data.data.listDemand;
+                console.log(this.message)
+            })
+        },
+        methods:{
+            jump(aa){
+                this.$router.push("/xuqiuxiangqing?info="+this.message[aa].demand_id)
+            }
+        }
     }
 </script>
 

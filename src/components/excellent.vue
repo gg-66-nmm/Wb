@@ -1,7 +1,7 @@
 <template>
 <div>
     <el-container>
-        <div class="cxy" @click="go()">
+        <div class="cxy">
             <h3>长 安 城 下 最 耀 眼 的 码 农</h3>
             <ul>
                 <li v-for="(item,index) in message" :key="index" @click="xiangqing(index)">
@@ -33,7 +33,7 @@
                     {}
                 ] */
                 size:'large',
-                email:'',
+                email:[],
                 message:[],
             }
         },
@@ -43,6 +43,10 @@
                 console.log(res.data.data.showExcellent)
                 this.message=res.data.data.showExcellent;
             })
+            /* this.$axios.post("/zk/programmer/detailed/message",{user_email:})
+                .then(suss=>{
+                    console.log(suss)
+                }) */
         },
         methods:{
             xiangqing(bb){

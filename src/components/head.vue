@@ -9,7 +9,7 @@
                 <el-menu-item index="1"><router-link to="/" class="decoration">首页</router-link></el-menu-item>
                 <el-menu-item index="2"><router-link to="/cxy" class="decoration">程序员</router-link></el-menu-item>
                 <el-input placeholder="搜索你感兴趣的程序员" @keyup.native="sousuo()" v-model="searchData">
-                    <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+                    <el-button slot="append" icon="el-icon-search" ></el-button>
                 </el-input>
                 <div class="tishi" ref='tishi' ></div>
                 <el-menu-item index="3"><router-link to="fabuxuqiu" class="decoration">发布需求</router-link></el-menu-item>
@@ -106,7 +106,7 @@
                     key:this.searchData,
                 }).then(res=>{
                     console.log(res);
-                    if (res.data.code==200) {
+                    if (res.data.code===200) {
                         this.sousuozong=res.data.data.listProgrammer;
                         console.log(this.sousuozong);
                         this.zhankai=this.sousuozong.indexOf(this.searchData);

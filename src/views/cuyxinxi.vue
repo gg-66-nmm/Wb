@@ -4,7 +4,7 @@
         <el-container>
             <el-aside width="200px">
                 <div style="margin-top:20px">
-                    <el-avatar class="left" src="../assets/logo.png"></el-avatar>
+                  <el-avatar  :src="message.user_avatar"></el-avatar>
                     <p style="margin-top:10px;font-size:18px;color:rgb(255,128,128)">{{message.real_name}}</p>
                     <p style="margin-top:10px;font-size:14px;color:#999;"><i class="el-icon-delete-location"></i>{{message.prog_area}}</p>
                     <p style="margin-top:18px;font-size:14px;color:#999;"><i class="el-icon-medal"></i>{{message.prog_job_status}}</p>

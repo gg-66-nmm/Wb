@@ -103,7 +103,7 @@
                     <el-input placeholder="所属职位" size="small" v-model="ruleForm.gongsizhiwei" style="width:200px"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    个人影像
+                    个人头像
                     <el-upload
                     action=""
                     list-type="picture-card"

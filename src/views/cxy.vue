@@ -1,15 +1,23 @@
 <template>
     <div>
         <top></top>
-        <div class="xuanxk" @click="go()">
+        <div class="xuanxk">
             <ul>
-                <li  v-for="(item,index) in xinxi" :key="index">
-                   <span class="title"> {{item.title}}</span>
-                    <span class="info" v-for="(aa,index) in xinxi[index].info" :key="index">{{aa}}</span>
+               <li>
+                    <span class="title"> {{juese.title}}</span>
+                    <span class="info" v-for="(item,index) in juese.info" ref="roles" :key="index" @click="role(item)">{{item}}</span>
+                </li>
+                <li>
+                    <span class="title"> {{city.title}}</span>
+                    <span class="info" v-for="(item,index) in city.info" :key="index" @click="citys(item)">{{item}}</span>
+                </li>
+                <li>
+                    <span class="title"> {{hangye.title}}</span>
+                    <span class="info" v-for="(item,index) in hangye.info" :key="index" @click="industry(item)">{{item}}</span>
                 </li>
                 <li>
                     <div class="fangshi">                        
-                        <label class="fs">工作方式</label>
+                        <label class="fs" :model="work">工作方式</label>
                         <el-radio v-model="radio" label="1">远程</el-radio>
                         <el-radio v-model="radio" label="2">驻场</el-radio>
                         <el-select v-model="value" placeholder="工作状态" size="small">
@@ -102,28 +110,45 @@ import top from '@/components/head'
                 value:'',
                 radio:1,
                 email:'',
-                xinxi:[
-                    {
+                juese:{
                         title:"角色",
                         info:["产品经理","设计师","前端","移动端","小程序","后端","游戏","测试","DBA","运维"]
                     },
-                    {
+                city:{
                         title:"城市",
                         info:["北京","上海","广州","深圳","杭州","成都","武汉","西安","南京","武汉","重庆",
                         "长沙","厦门","郑州","天津","兰州","乌鲁木齐","大连"],
                     },
-                    {
+                hangye:{
                         title:"行业",
                         info:["电子商务","社交","人工智能","媒体门户","各种软件","消费生活","金融","医疗健康","企业服务","数字娱乐","在线教育"]
-                    }
-                ]
+                    },
+                js:'',
+                cs:'',
+                hy:'',
+                roles:'',
+                work:''
             }
         },
         methods:{
-            go(){
-
-            }
-            // console.log(this.xinxi[0].info)
+           role(aa){
+               this.js=aa;
+           },
+           citys(aa){
+               this.cs=aa;
+           },
+           industry(aa){
+               this.hy=aa;
+           },
+        },
+        mounted(){
+            this.$axios.post('/zk/programmer/circle')
+            .then(res=>{
+                console.log(res)
+            })
+            .catch(err=>{
+                new Error(err)
+            })
         }
     }
 </script>

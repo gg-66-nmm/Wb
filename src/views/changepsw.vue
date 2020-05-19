@@ -96,7 +96,7 @@
             code(){
                 console.log(this.emailForm.email)
                 this.$axios
-                .post('/api/sendEmail',{email:this.emailForm.email})
+                .post('/zk/verification/code',{user_email:this.emailForm.email})
                 .then(res=>{
                     //console.log(res)
                     this.$message("验证码已发送到你的邮箱，请注意查收")
@@ -108,29 +108,16 @@
             },
             gologin(){
                 this.$axios
-                .post('/api/codeVerify',{
-                    email:this.emailForm.email,
-                    code:this.emailForm.code,
+                .post('/zk/change/password/two',{
+                        user_email:this.emailForm.email,
+                    verificationCode:this.emailForm.code,
+                    user_password:this.emailForm.password
                 })
-                .then(res=>{
-                    if(res.data.code===200){
-                        //console.log(res)
-                        this.$axios
-                        .post('/api/changePassword',{
-                             email:this.emailForm.email,
-                            code:this.emailForm.code,
-                            password:this.emailForm.password
-                        })
-                        .then(res=>{                             
-                            this.$router.replace({path:'/login'})
-                            this.$message('密码修改成功')
-                        })
-                    }
+                .then(res=>{                             
+                    this.$router.replace({path:'/login'})
+                    this.$message('密码修改成功')
                 })
-                .catch(failResponse=>{
-                    
-                })
-            }
+            } 
             
         } 
     }
